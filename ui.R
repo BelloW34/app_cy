@@ -25,6 +25,7 @@ body <- dashboardBody(
     ######################## Presentation ######################## 
     tabItem(tabName = "presentation", 
             texte_into$para1, 
+            verbatimTextOutput("desc_dtp"),
             texte_into$para2
     ),
     ############################################################################
@@ -44,7 +45,8 @@ body <- dashboardBody(
     ############################################################################
     tabItem(tabName = "analyse",
             radioButtons("choixvar", "Choisissez la variable d'étude :",
-                         choices = list("Vmax" = "vmax", "Rmax" = "rmax", "Pression"="pressure"),
+                         choices = list("Vmax" = "vmax", "Rmax" = "rmax",
+                                        "Pression"="pressure"),
                          selected = "vmax"
             ),
             plotOutput("plot_var")),

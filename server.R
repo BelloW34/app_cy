@@ -1,8 +1,14 @@
 function(input, output, session) {
   
+  # affichage de la description dans l'intro
+  output$desc_dtp <- renderPrint({
+    summary(dtp) # Hmisc::describe() prend beaucoup de temps on peut le pré calculer
+  })
+  
+  # affichage var par mois
   output$plot_var <- renderPlot({
     varname <- sym(input$choixvar)
-    dt_ym <- dt_var_ym(var = !!varname,q1 = 0.5,q2 = 0.5)
+    dt_ym <- dt_var_ym(var = !!varname, q1 = 0.5, q2 = 0.5)
     
     plot_var <- dt_ym |> 
       ggplot() +
