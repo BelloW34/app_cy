@@ -1,0 +1,13 @@
+---
+title: "brouillon_funct"
+format: html
+---
+
+Ce fichier est la pour travailler sur les fonctions et sur les visus avant de les mettre sur l'app
+
+Il suffit d'ouvrir un chunk par fonction
+```{r}
+
+```
+
+Si besoin, c'est possible de faire un fichier par personne
