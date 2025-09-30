@@ -41,7 +41,7 @@ source("annexe_intro.R")
 #####                               FONCTION                               #####
 ################################################################################
 
-
+####
 dt_var_ym <- function(var, q1 = 0.5, q2 = 0.5){
   
   # data frame année * mois
@@ -68,3 +68,141 @@ dt_var_ym <- function(var, q1 = 0.5, q2 = 0.5){
   
   return(dt_ym) 
 }
+####
+
+#Fonction pour la régression des valeurs moyennes annuelles par variable
+#####
+fun_reg_var <- function(var){
+  #######
+  #Utilisation du nom de la colonne comme variable utilisable (avec !!var) #####
+  var_name <- deparse(substitute(var))
+  
+  
+  # print("ici")
+  # print(var)
+  # print(class(var))
+  # print(var_name)
+  # print(class(var_name))
+  
+  #######
+  #Transformations des données #################################################
+  
+  #Situation 1. Appel de la variable number => Calcul du nombre de cyclones par 
+  #ans
+  if(var_name == "number") {
+    dtp <- dtp |> 
+      group_by(year, {{var}}) |> 
+      summarise()
+    
+    dtp2 <- dtp |> 
+      group_by(year) |> 
+      summarise(y = n())
+  }
+  
+  #Situation 2. Appel d'une autre variable => Calcul de la moyenne de la variable
+  #par ans
+  else {
+    dtp2 <- dtp |>
+      group_by(year)|>
+      summarise(y = mean({{var}}))
+  }
+  print(head(dtp2))
+  #----
+  #Modèle linéaire simple ######################################################
+  
+  #1. Ajustement
+  m <- lm(y ~ year, 
+          data = dtp2)
+  
+  #2. Extraction des paramètres
+  coef <- round(coefficients(m), 2)
+  
+  #3. Multiplication de beta1 par 10 pour obtenir des variations de la variable 
+  #sur 10 ans
+  a10 <- coef[2]*10
+  
+  #######
+  #Création d'un sous-titre variable en fonction de la variable choisi #########
+  
+
+  
+  #1. Creation des conditions
+  if(var_name == "vmax"){
+    nom_var = "vitesse maximale moyenne"
+    pronom = "la"
+    unite = "km/h"
+    print("je suis la")
+  }
+  else if(var_name == "pressure"){
+    nom_var <- "pression moyenne"
+    pronom <- "la"
+    unite <- "hPa"
+  }
+  else if (var_name == "rmax"){
+    nom_var <- "rayon maximum moyen"
+    pronom <- "le"
+    unite <- "m"
+  }
+  else if(var_name == "number"){
+    nom_var <- "nombre"
+  }
+  if(a10 >= 0){
+    sens <- "augmente de"
+  }
+  else if(a10 <= 0){
+    sens <- "diminue de"
+  }
+  
+  #2. Création du sous-titre dans le cas ou la variable number est appelée
+  if(var_name == "number"){
+    sous_titre <- paste("En moyenne, il y a", abs(a10), 
+                        "cyclones de plus tous les 10 ans", sep = " ")
+  }
+  
+  #3. Création du sous-titre dans le cas ou une variable différente de number 
+  #est appelée
+  else {
+    sous_titre <- paste("Tous les 10 ans,", pronom, nom_var, "des cyclones", 
+                        sens, abs(a10), unite, sep = " ")
+  }
+  
+  #######
+  #Création de labels des ordonnées variable en fonction de la variable choisi ##
+  
+  #1. Création du label dans le cas ou la variable number est appelée
+  if(var_name == "number"){
+    labsy <- paste(str_to_sentence(nom_var))
+  }
+  
+  #2. Création du label dans le cas ou une variable différente de number 
+  #est appelée
+  else {
+    labsy <- paste(str_to_sentence(nom_var), "en", unite, sep = " ")
+  }
+  
+  
+  print("la")
+  #######
+  #Réalisation du graphique brut ################################################
+  plot <- dtp2 |> 
+    ggplot()+
+    aes(x = year, y = y)+
+    geom_smooth(method = lm, colour = "lightskyblue4", fill = "lightskyblue")+
+    geom_line()+
+    
+    #Appel des labels variable en fonction des variables choisi
+    labs(x = "Années", y = labsy, caption = sous_titre)+
+    
+    #######
+  #Modification du theme #######################################################
+  theme(axis.line = element_line(colour = "black"),
+        panel.grid.major = element_blank(), #Suppression de la grille majeure
+        panel.grid.minor = element_blank(), #suppression de la grille mineure
+        panel.border = element_blank(), #suppression du cadre
+        panel.background = element_blank(), #suppression du fond
+        text = element_text(size = 15)) #augmentation de la taille des labels
+  
+  #Appel du graphique comme sortie de la fonction ##############################
+  return(plot)
+}
+#####

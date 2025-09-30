@@ -39,4 +39,11 @@ function(input, output, session) {
     return(leaflet_var)
   })
   
+  output$plot_varexp <- renderPlot({
+    varname <- sym(input$choixvarexp)
+    print(class(varname))
+    print(varname)
+    fun_reg_var(!!varname)
+  })
+  
 }
