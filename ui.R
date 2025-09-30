@@ -43,9 +43,8 @@ body <- dashboardBody(
             radioButtons("choixvarleaflet", "Choisissez la variable d'étude :",
                          choices = list("Vmax" = "vmax", "Rmax" = "rmax", "Pression"="pressure"),
                          selected = "vmax"),
-            sliderInput("choixy","Choisissez la période d'étude:",min = 1979,max = 2020, value = 1979),
-            plotOutput("leaflet_var")),
-    
+            numericInput("choixy", "date après 1979", value = 1979),
+            leafletOutput("leaflet_var")),
     
     #################  ANALYSE de DONNEE #################
     tabItem(tabName = "analyse",

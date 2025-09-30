@@ -22,21 +22,35 @@ function(input, output, session) {
     
     return(plot_var)
   })
-  output$leaflet_var <- renderPlot({
-    varyear <- sym(input$choixy)
-    var <- sym(input$choixvarleaflet)
-    dt <- dtp %>% filter(year==!!varyear)
-    leaflet_var <- leaflet(data = dt) %>% 
+  output$leaflet_var <- renderLeaflet({
+    varyear <- as.Date(input$choixy)
+    var <- input$choixvarleaflet
+    dt <- dtp %>% filter(year==varyear)
+    dt <- dt %>%
+      mutate(selected = as.numeric(as.character(.data[[var]])))
+    vals <- dt$selected
+    if (all(is.na(vals))) {
+      # si tout est NA, on choisit un domaine par défaut pour éviter erreurs
+      rng <- c(0, 1)
+    } else {
+      rng <- range(vals, na.rm = TRUE)
+    }
+    pal <- colorNumeric(
+      palette = "viridis",  # palette de couleurs (peut être "viridis", "Blues", etc.)
+      domain = rng   # la variable à représenter
+    )
+    leaflet(data = dt) %>% 
       addTiles() %>% 
-      addCircleMarkers(~lon, ~lat, radius=4, color = ~pal(!!var), fillOpacity = 0.8, stroke = FALSE,popup = ~paste(name, "<br><b>Année:</b>",year, "<br><b>Vmax:</b>",!!var)) %>% 
+      addCircleMarkers(~lon, ~lat, radius=4, color = ~pal(selected), fillOpacity = 0.8, stroke = FALSE,popup = ~paste(name,"<br><b>Année:</b>", year,
+                                                                                                                      "<br><b>", var, ":</b>", selected
+      )) %>% 
       addLegend("bottomright",
                 pal = pal,
-                values = ~!!var,
-                title = "Valeur de la variable",
+                values = vals,
+                title = paste("Valeur de", var),
                 opacity = 1
       )
     
-    return(leaflet_var)
   })
   
   output$plot_varexp <- renderPlot({
