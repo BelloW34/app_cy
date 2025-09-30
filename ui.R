@@ -31,29 +31,33 @@ body <- dashboardBody(
     ############################################################################
     #####                      Exploration des Données                     #####
     ############################################################################
+    tabItem(tabName = "exploration",
+            radioButtons("choixvarexp", "Choisissez la variable d'étude :",
+                         choices = list("Vmax" = "vmax", "Rmax" = "rmax", "Pression"="pressure"),
+                         selected = "vmax"),
+            plotOutput("plot_varexp")),
     
-    tabItem(tabName = "exploration"),
     
-    ############################################################################
-    #####                              Carte                               #####
-    ############################################################################
     ######################## Carte ########################
-    tabItem(tabName = "carte", h2("Carte du Pacifique")),
+    tabItem(tabName = "carte", h2("Carte du Pacifique"),
+            radioButtons("choixvarleaflet", "Choisissez la variable d'étude :",
+                         choices = list("Vmax" = "vmax", "Rmax" = "rmax", "Pression"="pressure"),
+                         selected = "vmax"),
+            sliderInput("choixy","Choisissez la période d'étude:",min = 1979,max = 2020, value = 1979),
+            plotOutput("leaflet_var")),
     
-    ############################################################################
-    #####                      ANALYSE de DONNEE                           #####
-    ############################################################################
+    
+    #################  ANALYSE de DONNEE #################
     tabItem(tabName = "analyse",
             radioButtons("choixvar", "Choisissez la variable d'étude :",
-                         choices = list("Vmax" = "vmax", "Rmax" = "rmax",
-                                        "Pression"="pressure"),
+                         choices = list("Vmax" = "vmax", "Rmax" = "rmax", "Pression"="pressure"),
                          selected = "vmax"
             ),
+            sliderInput("choixq1","Choisissez la valeur de q1:",min = 0,max = 1, value = 10),
+            sliderInput("choixq2","Choisissez la valeur de q2:",min = 0,max = 1, value = 10),
             plotOutput("plot_var")),
     
-    ############################################################################
-    #####                             Conclusion                           #####
-    ############################################################################
+    ############### Conclusion ##############
     tabItem(tabName = "conclusion")
   )
 )
