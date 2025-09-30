@@ -22,5 +22,21 @@ function(input, output, session) {
     
     return(plot_var)
   })
+  output$leaflet_var <- renderPlot({
+    varyear <- sym(input$choixy)
+    var <- sym(input$choixvarleaflet)
+    dt <- dtp %>% filter(year==!!varyear)
+    leaflet_var <- leaflet(data = dt) %>% 
+      addTiles() %>% 
+      addCircleMarkers(~lon, ~lat, radius=4, color = ~pal(!!var), fillOpacity = 0.8, stroke = FALSE,popup = ~paste(name, "<br><b>Année:</b>",year, "<br><b>Vmax:</b>",!!var)) %>% 
+      addLegend("bottomright",
+                pal = pal,
+                values = ~!!var,
+                title = "Valeur de la variable",
+                opacity = 1
+      )
+    
+    return(leaflet_var)
+  })
   
 }
