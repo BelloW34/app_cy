@@ -33,7 +33,7 @@ body <- dashboardBody(
     ############################################################################
     tabItem(tabName = "exploration",
             radioButtons("choixvarexp", "Choisissez la variable d'étude :",
-                         choices = list("Vmax" = "vmax", "Rmax" = "rmax", "Pression"="pressure"),
+                         choices = list("Vmax" = "vmax", "Rmax" = "rmax", "Pression"="pressure", "Nombre" = "number"),
                          selected = "vmax"),
             plotOutput("plot_varexp")),
     

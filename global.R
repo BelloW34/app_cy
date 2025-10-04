@@ -90,10 +90,6 @@ fun_reg_var <- function(var){
   #Situation 2. Appel d'une autre variable => Calcul de la moyenne de la variable
   #par ans
   if(var == "number") {
-    dtp <- dtp |> 
-      group_by(year, {{var}}) |> 
-      summarise()
-    
     dtp2 <- dtp |> 
       group_by(year) |> 
       summarise(y = n())
