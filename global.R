@@ -9,7 +9,6 @@ library(tidyverse)
 library(FactoMineR)
 library(RColorBrewer)
 library(viridis)
-library(dplyr)
 library(Hmisc)
 library(leaflet)
 library(tidygeocoder)
@@ -26,7 +25,8 @@ WP <- read_csv("Western_Pacific.csv")
 dtp <- bind_rows(EP, SP, WP) |> 
   select(-c(Nb, R34, R50, R64, ...1)) |> 
   filter(nature == "TS",
-         year >= 1979) |> 
+         year >= 1979,
+         year <=2021) |> 
   group_by(number)  |>          # un cyclone = un groupe
   arrange(year, month, day, hour) |>
   mutate(
