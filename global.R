@@ -74,23 +74,15 @@ dt_var_ym <- function(var, q1 = 0.5, q2 = 0.5){
 #Fonction pour la régression des valeurs moyennes annuelles par variable
 #####
 fun_reg_var <- function(var){
-  #######
-  #Utilisation du nom de la colonne comme variable utilisable (avec !!var) #####
-  var_name <- deparse(substitute(var))
-  
-  
-  # print("ici")
-  # print(var)
-  # print(class(var))
-  # print(var_name)
-  # print(class(var_name))
   
   #######
   #Transformations des données #################################################
   
   #Situation 1. Appel de la variable number => Calcul du nombre de cyclones par 
   #ans
-  if(var_name == "number") {
+  #Situation 2. Appel d'une autre variable => Calcul de la moyenne de la variable
+  #par ans
+  if(var == "number") {
     dtp <- dtp |> 
       group_by(year, {{var}}) |> 
       summarise()
@@ -98,16 +90,11 @@ fun_reg_var <- function(var){
     dtp2 <- dtp |> 
       group_by(year) |> 
       summarise(y = n())
-  }
-  
-  #Situation 2. Appel d'une autre variable => Calcul de la moyenne de la variable
-  #par ans
-  else {
-    dtp2 <- dtp |>
+  }else {
+    dtp2 <- dtp |> 
       group_by(year)|>
-      summarise(y = mean({{var}}))
+      summarise(y = mean(.data[[var]], na.rm = TRUE))
   }
-  print(head(dtp2))
   #----
   #Modèle linéaire simple ######################################################
   
@@ -128,23 +115,22 @@ fun_reg_var <- function(var){
 
   
   #1. Creation des conditions
-  if(var_name == "vmax"){
+  if(var == "vmax"){
     nom_var = "vitesse maximale moyenne"
     pronom = "la"
     unite = "km/h"
-    print("je suis la")
   }
-  else if(var_name == "pressure"){
+  else if(var == "pressure"){
     nom_var <- "pression moyenne"
     pronom <- "la"
     unite <- "hPa"
   }
-  else if (var_name == "rmax"){
+  else if (var == "rmax"){
     nom_var <- "rayon maximum moyen"
     pronom <- "le"
     unite <- "m"
   }
-  else if(var_name == "number"){
+  else if(var == "number"){
     nom_var <- "nombre"
   }
   if(a10 >= 0){
@@ -155,7 +141,7 @@ fun_reg_var <- function(var){
   }
   
   #2. Création du sous-titre dans le cas ou la variable number est appelée
-  if(var_name == "number"){
+  if(var == "number"){
     sous_titre <- paste("En moyenne, il y a", abs(a10), 
                         "cyclones de plus tous les 10 ans", sep = " ")
   }
@@ -171,7 +157,7 @@ fun_reg_var <- function(var){
   #Création de labels des ordonnées variable en fonction de la variable choisi ##
   
   #1. Création du label dans le cas ou la variable number est appelée
-  if(var_name == "number"){
+  if(var == "number"){
     labsy <- paste(str_to_sentence(nom_var))
   }
   
@@ -182,7 +168,6 @@ fun_reg_var <- function(var){
   }
   
   
-  print("la")
   #######
   #Réalisation du graphique brut ################################################
   plot <- dtp2 |> 

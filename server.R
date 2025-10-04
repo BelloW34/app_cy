@@ -74,10 +74,7 @@ function(input, output, session) {
   ##############################################################################
   
   output$plot_varexp <- renderPlot({
-    varname <- sym(input$choixvarexp)
-    print(class(varname))
-    print(varname)
-    fun_reg_var(!!varname)
+    fun_reg_var(input$choixvarexp)
   })
   
 }
