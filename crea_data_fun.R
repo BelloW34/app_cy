@@ -1,4 +1,6 @@
-####
+#################
+### crea data ###
+#################
 crea_data <- function(var, month_t = T, q1 = NULL, q2 = 0.5, fill = T,
                       year1 = NULL, year2 = NULL){
   
@@ -86,3 +88,75 @@ crea_data <- function(var, month_t = T, q1 = NULL, q2 = 0.5, fill = T,
   return(dtp2) 
 }
 ####
+
+#################
+### crea labs ###
+#################
+
+crea_labs <- function(var, a10 = NULL){
+  labs_v <-  list(var = var, nom_var = NA, pronom = NA, unite = NA, sens = NA,
+                  sous_titre = NA, labsy = NA)
+  
+  #1. Creation des conditions
+  if(var == "vmax"){
+    labs_v$nom_var = "vitesse maximale moyenne"
+    labs_v$pronom = "la"
+    labs_v$unite = "km/h"
+  }
+  else if(var == "pressure"){
+    labs_v$nom_var <- "pression moyenne"
+    labs_v$pronom <- "la"
+    labs_v$unite <- "hPa"
+  }
+  else if (var == "rmax"){
+    labs_v$nom_var <- "rayon maximum moyen"
+    labs_v$pronom <- "le"
+    labs_v$unite <- "m"
+  }
+  else if(var == "number"){
+    labs_v$nom_var <- "nombre"
+  }
+  
+  if(!is.null(a10)){
+    if(a10 >= 0){
+      labs_v$sens <- "augmente de"
+    }
+    else if(a10 <= 0){
+      labs_v$sens <- "diminue de"
+    }
+    
+    #2. Création du sous-titre dans le cas ou la variable number est appelée
+    if(var == "number"){
+      labs_v$sous_titre <- paste("En moyenne, il y a", abs(a10), 
+                                 "cyclones de plus tous les 10 ans", sep = " ")
+    }
+    
+    #3. Création du sous-titre dans le cas ou une variable différente de number 
+    #est appelée
+    else {
+      labs_v$sous_titre <- paste("Tous les 10 ans,", labs_v$pronom,
+                                 labs_v$nom_var, "des cyclones", 
+                                 labs_v$sens, abs(a10), labs_v$unite, sep = " ")
+    }
+  }
+  
+  #######
+  #Création de labels des ordonnées variable en fonction de la variable choisi ##
+  
+  #1. Création du label dans le cas ou la variable number est appelée
+  if(var == "number"){
+    labs_v$labsy <- paste(labs_v$nom_var)
+  }
+  
+  #2. Création du label dans le cas ou une variable différente de number 
+  #est appelée
+  else {
+    labs_v$labsy <- paste(labs_v$nom_var, "en",
+                          labs_v$unite, sep = " ")
+  }
+  return(labs_v)
+}
+
+
+
+

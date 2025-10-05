@@ -84,62 +84,8 @@ fun_reg_var <- function(var){
   #######
   #Création d'un sous-titre variable en fonction de la variable choisi #########
   
-  
-  
-  #1. Creation des conditions
-  if(var == "vmax"){
-    nom_var = "vitesse maximale moyenne"
-    pronom = "la"
-    unite = "km/h"
-  }
-  else if(var == "pressure"){
-    nom_var <- "pression moyenne"
-    pronom <- "la"
-    unite <- "hPa"
-  }
-  else if (var == "rmax"){
-    nom_var <- "rayon maximum moyen"
-    pronom <- "le"
-    unite <- "m"
-  }
-  else if(var == "number"){
-    nom_var <- "nombre"
-  }
-  if(a10 >= 0){
-    sens <- "augmente de"
-  }
-  else if(a10 <= 0){
-    sens <- "diminue de"
-  }
-  
-  #2. Création du sous-titre dans le cas ou la variable number est appelée
-  if(var == "number"){
-    sous_titre <- paste("En moyenne, il y a", abs(a10), 
-                        "cyclones de plus tous les 10 ans", sep = " ")
-  }
-  
-  #3. Création du sous-titre dans le cas ou une variable différente de number 
-  #est appelée
-  else {
-    sous_titre <- paste("Tous les 10 ans,", pronom, nom_var, "des cyclones", 
-                        sens, abs(a10), unite, sep = " ")
-  }
-  
-  #######
-  #Création de labels des ordonnées variable en fonction de la variable choisi ##
-  
-  #1. Création du label dans le cas ou la variable number est appelée
-  if(var == "number"){
-    labsy <- paste(str_to_sentence(nom_var))
-  }
-  
-  #2. Création du label dans le cas ou une variable différente de number 
-  #est appelée
-  else {
-    labsy <- paste(str_to_sentence(nom_var), "en", unite, sep = " ")
-  }
-  
-  
+  labs_v <- crea_labs(var, a10)
+
   #######
   #Réalisation du graphique brut ################################################
   plot <- dtp2 |> 
@@ -149,7 +95,7 @@ fun_reg_var <- function(var){
     geom_line()+
     
     #Appel des labels variable en fonction des variables choisi
-    labs(x = "Années", y = labsy, caption = sous_titre)+
+    labs(x = "Années", y = labs_v$labsy, caption = labs_v$sous_titre)+
     
     #######
   #Modification du theme #######################################################
