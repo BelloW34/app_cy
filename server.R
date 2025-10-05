@@ -19,7 +19,7 @@ function(input, output, session) {
     dt_ym <- crea_data(var = input$choixvar,
                        month_t = input$month_tt == "ym",
                        q1 = input$choixq1, q2 = input$choixq2,
-                       )
+    )
     
     plot_var <- dt_ym |> 
       ggplot() +
@@ -39,6 +39,7 @@ function(input, output, session) {
   ######                   affichage de la carte pacifique                 #####
   ##############################################################################
   
+  
   output$leaflet_var <- renderLeaflet({
     var <- input$choixvarleaflet
     if (input$choixpa=="annee"){
@@ -55,6 +56,7 @@ function(input, output, session) {
     dt_wrap <- dt
     dt_wrap$lon <- ifelse(dt$lon < 0, dt$lon + 360, dt$lon - 360)
     dt <- rbind(dt, dt_wrap)
+    
     if (all(is.na(vals))) {
       # si tout est NA, on choisit un domaine par défaut pour éviter erreurs
       rng <- c(0, 1)
@@ -63,7 +65,7 @@ function(input, output, session) {
     }
     pal <- colorNumeric(
       palette = "viridis",  
-      domain = rng   
+      domain = rng   # la variable à représenter
     )
     leaflet(data = dt,options = leafletOptions(worldCopyJump = TRUE)) %>% 
       addTiles() %>% 
@@ -77,14 +79,15 @@ function(input, output, session) {
       setView(lng = -150, lat = 0, zoom = 2)
   })
   
-  
-  
-  ##############################################################################
-  ######              affichage fonction de regression                    #####
-  ##############################################################################
-  
-  output$plot_varexp <- renderPlot({
-    fun_reg_var(input$choixvarexp)
-  })
-  
+
+
+
+##############################################################################
+######                        affichage fonction Thib                    #####
+##############################################################################
+
+output$plot_varexp <- renderPlot({
+  fun_reg_var(input$choixvarexp)
+})
+
 }

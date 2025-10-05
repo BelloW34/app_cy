@@ -31,7 +31,7 @@ dtp <- bind_rows(EP, SP, WP) |>
   arrange(year, month, day, hour) |>
   mutate(
     age = (row_number() - 1) * 3,
-    age_n = paste0(age %/% 24, "j", age - age %/% 24, "h")
+    age_n = paste0(age %/% 24, "j", age - 24 * (age %/% 24), "h")
   ) |>
   ungroup() 
 

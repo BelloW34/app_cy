@@ -60,8 +60,8 @@ body <- dashboardBody(
                          choices = list("Année/mois" = "ym", "Année" = "y"),
                          selected = "ym"
             ),
-            sliderInput("choixq1","Choisissez la valeur de q1:",min = 0,max = 1, value = 10),
-            sliderInput("choixq2","Choisissez la valeur de q2:",min = 0,max = 1, value = 10),
+            sliderInput("choixq1","Choisissez la valeur de q1:",min = 0,max = 1, value = 0.9),
+            sliderInput("choixq2","Choisissez la valeur de q2:",min = 0,max = 1, value = 0.9),
             plotOutput("plot_var")),
     
     ############### Conclusion ##############
