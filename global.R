@@ -49,119 +49,11 @@ source("annexe_intro.R")
 #####                               FONCTION                               #####
 ################################################################################
 
-####
-crea_data <- function(var, month_t = T, q1 = NULL, q2 = 0.5, fill = T,
-                      year1 = NULL, year2 = NULL){
-  
-  if(is.null(year1)){year1 = 1979}
-  if(is.null(year2)){year2 = 2021}
-  dtp <- dtp |> 
-    filter(year >= year1,
-           year <= year2)
-  
-  #si on veux compter le nombre de cyclone par année ou année et mois
-  if(var == "number") {
-    if(month_t){
-      dtp2 <- dtp |> 
-        group_by(year, month) |> 
-        summarise(y = n()) 
-      
-      if(fill){  #met un zero aux mois sans cyclones
-        print("ici!i")
-        dtp2 <- expand.grid(1:12, year1:year2) |> 
-          rename(month = Var1, year = Var2) |> 
-          select(year, month) |> 
-          left_join(dtp2) |> 
-          mutate(y = replace_na(y, 0))
-        print("et laaa")
-      }
-      
-    }else{
-      dtp2 <- dtp |> 
-        group_by(year) |> 
-        summarise(y = n())
-      
-    }
-  } else { #variable (pas compter)
-    
-    if(is.null(q1)){ # si on veux la moyenne des tempetes sur toute les info de manière brute
-      if(month_t){
-        dtp2 <- dtp |> 
-          group_by(year, month)|>
-          summarise(y = mean(.data[[var]], na.rm = TRUE))
-      }else{
-        dtp2 <- dtp |> 
-          group_by(year)|>
-          summarise(y = mean(.data[[var]], na.rm = TRUE))
-      }
-      
-    } else { # si on veux des info sur les tempètes
-      
-      dtp2 <- dtp |> 
-        group_by(number) |> 
-        summarise(year = min(year), 
-                  month = min(month), 
-                  y = quantile(.data[[var]], q1))
-      
-      
-      if(month_t){
-        dtp2 <- dtp2 |> 
-          group_by(year, month) |> 
-          summarise(y  = quantile(y, q2, na.rm = TRUE))
-        
-        if(fill){  #met un zero aux mois sans cyclones
-          print("ici!i")
-          dtp2 <- expand.grid(1:12, year1:year2) |> 
-            rename(month = Var1, year = Var2) |> 
-            select(year, month) |> 
-            left_join(dtp2) |>
-            mutate(month = factor(month.abb[month], levels = month.abb)) |>
-            mutate(y = replace_na(y, 0.0001)) ############### xxxxxxx
-          print("et laaa")
-        }
-        
-      }else{
-        dtp2 <- dtp2 |> 
-          group_by(year) |> 
-          summarise(y  = quantile(y, q2, na.rm = TRUE))
-      }
-    }
-  }
-  return(dtp2) 
-}
-####
+source("crea_data_fun.R")
 
 
 
 
-####
-dt_var_ym <- function(var, month_t = T, q1 = 0.5, q2 = 0.5){
-  
-  # data frame année * mois
-  ym <- expand.grid(1:12, 1979:2022) |> 
-    rename(month = Var1, year = Var2) |> 
-    select(year, month)
-  
-  #  data frame avec pour chaque cyclone  (ici on parle de la puissance des 
-  #cyclones, si 0.5 c'est la moyen, si 0.9 c'est la puissance au plus fort, si 1 c'est la puissance max)
-  
-  dt_cy <- dtp |> 
-    group_by(number) |> 
-    summarise(year = min(year), 
-              month = min(month), 
-              quat_var = quantile({{var}}, q1))
-  
-  # Fait du data frame avec pour chaque mois * annee le quantile de l'info du dessus
-  dt_ym <- dt_cy |> 
-    group_by(year, month) |> 
-    summarise(q_var_cy_ym  = quantile(quat_var, q2, na.rm = TRUE))
-  dt_ym <- left_join(ym, dt_ym)|>
-    mutate(month = factor(month.abb[month], levels = month.abb)) |>
-    mutate(q_var_cy_ym = replace_na(q_var_cy_ym, 0.0001))
-  
-  return(dt_ym) 
-}
-####
 
 #Fonction pour la régression des valeurs moyennes annuelles par variable
 #####
@@ -174,18 +66,8 @@ fun_reg_var <- function(var){
   #ans
   #Situation 2. Appel d'une autre variable => Calcul de la moyenne de la variable
   #par ans
-  if(var == "number") {
-    dtp2 <- dtp |> 
-      group_by(year, .data[[var]]) |>
-      summarise() |>
-      group_by(year) |> 
-      summarise(y = n())
-    
-  }else {
-    dtp2 <- dtp |> 
-      group_by(year)|>
-      summarise(y = mean(.data[[var]], na.rm = TRUE))
-  }
+  dtp2 <- crea_data(var, month_t = F)
+
   #Modèle linéaire simple ######################################################
   
   #1. Ajustement
