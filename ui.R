@@ -41,9 +41,13 @@ body <- dashboardBody(
     ######################## Carte ########################
     tabItem(tabName = "carte", h2("Carte du Pacifique"),
             radioButtons("choixvarleaflet", "Choisissez la variable d'étude :",
-                         choices = list("Vmax" = "vmax", "Rmax" = "rmax", "Pression"="pressure"),
+                         choices = list("Vmax" = "vmax", "Rmax" = "rmax", "Pression"="pressure", "Heures de vie"="age"),
                          selected = "vmax"),
-            numericInput("choixy", "date après 1979", value = 1979),
+            radioButtons("choixpa","Choisissez sur une période ou sur une année :", 
+                         choices=list("Année"="annee", "Période"="periode"),
+                         selected="annee"),
+            conditionalPanel(condition="input.choixpa == 'annee'",sliderInput("choixy","Date",min = 1979,max = 2021,value = 1979)),
+            conditionalPanel(condition="input.choixpa == 'periode'", sliderInput("choixp","Période",min = 1979, max = 2021, value =c(1979,1980))),
             leafletOutput("leaflet_var")),
     
     #################  ANALYSE de DONNEE #################

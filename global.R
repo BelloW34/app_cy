@@ -176,14 +176,16 @@ fun_reg_var <- function(var){
   #par ans
   if(var == "number") {
     dtp2 <- dtp |> 
+      group_by(year, .data[[var]]) |>
+      summarise() |>
       group_by(year) |> 
       summarise(y = n())
+    
   }else {
     dtp2 <- dtp |> 
       group_by(year)|>
       summarise(y = mean(.data[[var]], na.rm = TRUE))
   }
-  #----
   #Modèle linéaire simple ######################################################
   
   #1. Ajustement
