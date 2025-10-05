@@ -14,21 +14,24 @@ crea_data <- function(var, month_t = T, q1 = NULL, q2 = 0.5, fill = T,
   if(var == "number") {
     if(month_t){
       dtp2 <- dtp |> 
+        group_by(number) |> 
+        summarise(year = min(year), 
+                  month = min(month)) |> 
         group_by(year, month) |> 
         summarise(y = n()) 
       
       if(fill){  #met un zero aux mois sans cyclones
-        print("ici!i")
         dtp2 <- expand.grid(1:12, year1:year2) |> 
           rename(month = Var1, year = Var2) |> 
           select(year, month) |> 
           left_join(dtp2) |> 
           mutate(y = replace_na(y, 0))
-        print("et laaa")
       }
       
     }else{
       dtp2 <- dtp |> 
+        group_by(number) |> 
+        summarise(year = min(year))|> 
         group_by(year) |> 
         summarise(y = n())
       
@@ -63,7 +66,6 @@ crea_data <- function(var, month_t = T, q1 = NULL, q2 = 0.5, fill = T,
           summarise(y  = quantile(y, q2, na.rm = TRUE))
         
         if(fill){  #met un zero aux mois sans cyclones
-          print("ici!i")
           val_def <- 0
           if(var == "pressure"){
             val_def <- 1013.25
@@ -75,7 +77,6 @@ crea_data <- function(var, month_t = T, q1 = NULL, q2 = 0.5, fill = T,
             left_join(dtp2) |>
             mutate(month = factor(month.abb[month], levels = month.abb)) |>
             mutate(y = replace_na(y, val_def))
-          print("et laaa")
         }
         
       }else{
@@ -127,8 +128,8 @@ crea_labs <- function(var, a10 = NULL){
     
     #2. Création du sous-titre dans le cas ou la variable number est appelée
     if(var == "number"){
-      labs_v$sous_titre <- paste("En moyenne, il y a", abs(a10), 
-                                 "cyclones de plus tous les 10 ans", sep = " ")
+      labs_v$sous_titre <- paste("Tous les 10 ans, le nombre de cyclone", 
+                                 labs_v$sens, abs(a10))
     }
     
     #3. Création du sous-titre dans le cas ou une variable différente de number 
@@ -136,7 +137,7 @@ crea_labs <- function(var, a10 = NULL){
     else {
       labs_v$sous_titre <- paste("Tous les 10 ans,", labs_v$pronom,
                                  labs_v$nom_var, "des cyclones", 
-                                 labs_v$sens, abs(a10), labs_v$unite, sep = " ")
+                                 labs_v$sens, abs(a10), labs_v$unite)
     }
   }
   
@@ -152,7 +153,7 @@ crea_labs <- function(var, a10 = NULL){
   #est appelée
   else {
     labs_v$labsy <- paste(labs_v$nom_var, "en",
-                          labs_v$unite, sep = " ")
+                          labs_v$unite)
   }
   return(labs_v)
 }

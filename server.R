@@ -15,21 +15,42 @@ function(input, output, session) {
   ##############################################################################
   
   output$plot_var <- renderPlot({
-    #varname <- sym(input$choixvar)
-    dt_ym <- crea_data(var = input$choixvar,
-                       month_t = input$month_tt == "ym",
-                       q1 = input$choixq1, q2 = input$choixq2,
-    )
     
-    plot_var <- dt_ym |> 
-      ggplot() +
-      aes(x = month, y = y, group = year, colour = year) + 
-      geom_smooth(se = FALSE, alpha = 0.6) +
-      scale_color_viridis(option='magma',
-                          direction = -1,
-                          begin = 0,
-                          end = 1) +
-      theme_classic()
+    labs_var <- crea_labs(input$choixvar)
+    if(input$choixvar == "number"){
+      y_labs <- labs_var$nom_var
+    }else{y_labs <- paste(labs_var$nom_var, "en", labs_var$unite)}
+    
+    dt_ym <- crea_data(var = input$choixvar,
+                       month_t = (input$month_tt == "ym"),
+                       q1 = input$choixq1, q2 = input$choixq2)
+    
+    if(input$month_tt == "ym"){
+      plot_var <- dt_ym |> 
+        ggplot() +
+        aes(x = month, y = y, group = year, colour = year) + 
+        geom_smooth(se = FALSE, alpha = 0.6) +
+        scale_color_viridis(option='magma',
+                            direction = -1,
+                            begin = 0,
+                            end = 1) +
+        labs(x = "Années", y = y_labs) +
+        theme_classic()
+    } else {
+      plot_var <- dt_ym |> 
+        ggplot() +
+        aes(x = year, y = y) + 
+        geom_line() +
+        scale_color_viridis(option='magma',
+                            direction = -1,
+                            begin = 0,
+                            end = 1) +
+        labs(x = "Années", y = y_labs) +
+        theme_classic() +
+        theme(axis.text.x = element_text(angle = 45, hjust = 1))
+    }
+    
+    
     
     return(plot_var)
   })
@@ -79,72 +100,72 @@ function(input, output, session) {
       setView(lng = -150, lat = 0, zoom = 2)
   })
   
-
-
-
-##############################################################################
-######                        affichage fonction Thib                    #####
-##############################################################################
-
-output$plot_varexp <- renderPlot({
   
-  #Fonction pour la régression des valeurs moyennes annuelles par variable
-  #####
-  fun_reg_var <- function(var){
+  
+  
+  ##############################################################################
+  ######                     affichage fonction de regression              #####
+  ##############################################################################
+  
+  output$plot_varexp <- renderPlot({
     
-    #######
-    #Transformations des données #################################################
-    
-    #Situation 1. Appel de la variable number => Calcul du nombre de cyclones par 
-    #ans
-    #Situation 2. Appel d'une autre variable => Calcul de la moyenne de la variable
-    #par ans
-    dtp2 <- crea_data(var, month_t = F)
-    
-    #Modèle linéaire simple ######################################################
-    
-    #1. Ajustement
-    m <- lm(y ~ year, 
-            data = dtp2)
-    
-    #2. Extraction des paramètres
-    coef <- round(coefficients(m), 2)
-    
-    #3. Multiplication de beta1 par 10 pour obtenir des variations de la variable 
-    #sur 10 ans
-    a10 <- coef[2]*10
-    
-    #######
-    #Création d'un sous-titre variable en fonction de la variable choisi #########
-    
-    labs_v <- crea_labs(var, a10)
-    
-    #######
-    #Réalisation du graphique brut ################################################
-    plot <- dtp2 |> 
-      ggplot()+
-      aes(x = year, y = y)+
-      geom_smooth(method = lm, colour = "lightskyblue4", fill = "lightskyblue")+
-      geom_line()+
-      
-      #Appel des labels variable en fonction des variables choisi
-      labs(x = "Années", y = labs_v$labsy, caption = labs_v$sous_titre)+
+    #Fonction pour la régression des valeurs moyennes annuelles par variable
+    #####
+    fun_reg_var <- function(var){
       
       #######
-    #Modification du theme #######################################################
-    theme(axis.line = element_line(colour = "black"),
-          panel.grid.major = element_blank(), #Suppression de la grille majeure
-          panel.grid.minor = element_blank(), #suppression de la grille mineure
-          panel.border = element_blank(), #suppression du cadre
-          panel.background = element_blank(), #suppression du fond
-          text = element_text(size = 15)) #augmentation de la taille des labels
+      #Transformations des données #################################################
+      
+      #Situation 1. Appel de la variable number => Calcul du nombre de cyclones par 
+      #ans
+      #Situation 2. Appel d'une autre variable => Calcul de la moyenne de la variable
+      #par ans
+      dtp2 <- crea_data(var, month_t = F)
+      
+      #Modèle linéaire simple ######################################################
+      
+      #1. Ajustement
+      m <- lm(y ~ year, 
+              data = dtp2)
+      
+      #2. Extraction des paramètres
+      coef <- round(coefficients(m), 2)
+      
+      #3. Multiplication de beta1 par 10 pour obtenir des variations de la variable 
+      #sur 10 ans
+      a10 <- coef[2]*10
+      
+      #######
+      #Création d'un sous-titre variable en fonction de la variable choisi #########
+      
+      labs_v <- crea_labs(var, a10)
+      
+      #######
+      #Réalisation du graphique brut ################################################
+      plot <- dtp2 |> 
+        ggplot()+
+        aes(x = year, y = y)+
+        geom_smooth(method = lm, colour = "lightskyblue4", fill = "lightskyblue")+
+        geom_line()+
+        
+        #Appel des labels variable en fonction des variables choisi
+        labs(x = "Années", y = labs_v$labsy, caption = labs_v$sous_titre)+
+        
+        #######
+      #Modification du theme #######################################################
+      theme(axis.line = element_line(colour = "black"),
+            panel.grid.major = element_blank(), #Suppression de la grille majeure
+            panel.grid.minor = element_blank(), #suppression de la grille mineure
+            panel.border = element_blank(), #suppression du cadre
+            panel.background = element_blank(), #suppression du fond
+            text = element_text(size = 15)) #augmentation de la taille des labels
+      
+      #Appel du graphique comme sortie de la fonction ##############################
+      return(plot)
+    }
+    #####
     
-    #Appel du graphique comme sortie de la fonction ##############################
-    return(plot)
-  }
-  #####
+    fun_reg_var(input$choixvarexp)
+  })
   
-  fun_reg_var(input$choixvarexp)
-})
-
 }
