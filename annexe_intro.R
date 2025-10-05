@@ -1,5 +1,5 @@
 texte_into <- list(para1 = tagList(
-  h2("Comment ont évolué les caracycloneéristiques des cyclones dans le Pacifique entre 1979 et 2022 ?"),
+  h2("Comment ont évolué les caractéristiques des cyclones dans le Pacifique entre 1979 et 2022 ?"),
   
   p(strong("Informations sur les données :")),
   p("les données sont issues de Xu et al., 2024 
