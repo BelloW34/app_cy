@@ -77,7 +77,7 @@ function(input, output, session) {
   
   
   ##############################################################################
-  ######                        affichage fonction Thib                    #####
+  ######              affichage fonction de regression                    #####
   ##############################################################################
   
   output$plot_varexp <- renderPlot({
