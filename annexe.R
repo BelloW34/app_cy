@@ -1,4 +1,4 @@
-texte_into <- list(para1 = tagList(
+texte_into_1 <- list(para1 = tagList(
   h2("Comment ont évolué les caractéristiques des cyclones dans le Pacifique entre 1979 et 2022 ?"),
   
   p(strong("Informations sur les données :")),
@@ -22,7 +22,10 @@ texte_into <- list(para1 = tagList(
     Coriolis issue de la rotation de la Terre, les vents vont être déviés et 
     entrer en rotation. Cette roation est anti-horaire dans l'hémisphère nord et 
     horaire dans l'hémisphère sud. "),
+)
+)
   
+texte_into_2 <- list(para1 = tagList(
   p(strong("Explication des colonnes du jeu de données:")),
   p("- numéro : indice du cyclone (issu des données IBTrACS)"),
   p("- nom : nom du cyclone (issu des données IBTrACS)"),
