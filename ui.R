@@ -69,7 +69,8 @@ body <- dashboardBody(
     
     ############### Conclusion ##############
     tabItem(tabName = "conclusion",
-            texte_page_conclusion$para1)
+            texte_page_conclusion$para1, 
+            plotOutput("plot_land"))
   )
 )
 

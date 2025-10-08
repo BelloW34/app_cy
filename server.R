@@ -153,4 +153,13 @@ function(input, output, session) {
     fun_reg_var(input$choixvarexp)
   })
   
+  ##############################################################################
+  ######                     affichage fonction land              #####
+  ##############################################################################
+  
+  output$plot_land <- renderPlot({
+    dt_py <- dtp %>% group_by(year) %>% summarise (pland=mean(land=="TRUE")*100)
+    dt_py %>% ggplot(aes(x=as.numeric(year), y=pland))+geom_col(fill="steelblue") + scale_x_continuous(breaks=seq(min(dt_py$year),max(dt_py$year),by=5)) + labs(x="Années", y="Pourcentage de cyclones ayant touchés la terre") + theme_minimal() 
+  })
+  
 }
