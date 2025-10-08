@@ -29,7 +29,7 @@ function(input, output, session) {
         ggplot() +
         aes(x = month, y = y, group = year, colour = year) + 
         geom_smooth(se = FALSE, alpha = 0.6) +
-        scale_color_viridis(option='magma',
+        scale_color_viridis(option='viridis',
                             direction = -1,
                             begin = 0,
                             end = 1) +
@@ -75,7 +75,7 @@ function(input, output, session) {
     )
     leaflet(data = dt,options = leafletOptions(worldCopyJump = TRUE)) %>% 
       addTiles() %>% 
-      addCircleMarkers(~lon, ~lat, radius=3, color = ~pal(selected), fillOpacity = 0.8, stroke = FALSE,popup = ~paste(name,"<br><b>Année:</b>", year,"<br><b>vmax:</b>", round(vmax, digits=2),"km/h","<br><b>rmax:</b>", round(rmax, digits=2),"m", "<br><b>Pression:</b>", round(pressure, digits=2),"hPa","<br><b>Durée de vie:</b>", age_n)) %>% 
+      addCircleMarkers(~lon, ~lat, radius=3, color = ~pal(selected), fillOpacity = 0.8, stroke = FALSE,popup = ~paste(name,"<br><b>Année:</b>", year,"<br><b>vmax:</b>", round(vmax, digits=2),"km/h","<br><b>rmax:</b>", round(rmax, digits=2),"km", "<br><b>Pression:</b>", round(pressure, digits=2),"hPa","<br><b>Durée de vie:</b>", age_n)) %>% 
       addLegend("bottomright",
                 pal = pal,
                 values = vals,
