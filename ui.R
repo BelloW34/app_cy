@@ -31,6 +31,7 @@ body <- dashboardBody(
     
     ######################## Carte ########################
     tabItem(tabName = "carte", h2("Carte du Pacifique"),
+            texte_page_2$para1,
             radioButtons("choixvarleaflet", "Choisissez la variable d'étude :",
                          choices = list("Vmax" = "vmax", "Rmax" = "rmax", "Pression"="pressure", "Heures de vie"="age"),
                          selected = "vmax"),
@@ -45,14 +46,16 @@ body <- dashboardBody(
     tabItem(tabName = "analyse",
             
             navset_tab(
-              nav_panel("A", 
+              nav_panel("A",
+                        texte_page_3A$para1,
                         radioButtons("choixvarexp", "Choisissez la variable d'étude :",
                                      choices = list("Vmax" = "vmax", "Rmax" = "rmax", "Pression"="pressure", "Nombre" = "number"),
                                      selected = "vmax"),
-                        plotOutput("plot_varexp")
+                        plotOutput("plot_varexp"),
               ),
               
               nav_panel("B",
+                        texte_page_3B$para1,
                         radioButtons("choixvar", "Choisissez la variable d'étude :",
                                      choices = list("Nombre" = "number", "Vmax" = "vmax", "Rmax" = "rmax", "Pression"="pressure"),
                                      selected = "number"
@@ -69,7 +72,8 @@ body <- dashboardBody(
     ),
     
     ############### Conclusion ##############
-    tabItem(tabName = "conclusion")
+    tabItem(tabName = "conclusion",
+            texte_page_conclusion$para1)
   )
 )
 

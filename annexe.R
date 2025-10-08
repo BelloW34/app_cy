@@ -77,7 +77,12 @@ texte_into <- list(para1 = tagList(
 )
 )
 
-texte_page_reg <- list(para1 = tagList(
+texte_page_2 <- list(para1 = tagList(
+  p("texte a compléter"),
+)
+)
+
+texte_page_3A <- list(para1 = tagList(
   p("Sur cette page nous proposons de représenter l'évolution de différentes 
     variables décrivant les caractéristiques des cyclones au cours du temps avec
     au choix: La vitesse maximal des vent (vmax), la pression au centre du 
@@ -87,6 +92,11 @@ texte_page_reg <- list(para1 = tagList(
     moyennes de la variable choisie pour chaque années. Une courbe de régression 
     en gris ainsi qu'une bande bleue montrant l'incertitude de cette régression 
     sont également représentées."),
+)
+)
+
+texte_page_3B <- list(para1 = tagList(
+  p("texte a compléter"),
 )
 )
 
