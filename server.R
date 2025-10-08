@@ -92,14 +92,14 @@ function(input, output, session) {
       car <- "Valeur de la pression (hPa)"
     }
     if (var=="rmax"){
-      car <- "Valeur du rayon maximal (m)"
+      car <- "Valeur du rayon maximal (km)"
     }
     if (var=="vmax"){
-      car <- "Valeur de la vitesse maximale (km/h)"
+      car <- "Valeur de la vitesse maximale (m.s-1)"
     }
     leaflet(data = dt,options = leafletOptions(worldCopyJump = TRUE)) %>% 
       addTiles() %>% 
-      addCircleMarkers(~lon, ~lat, radius=3, color = ~pal(selected), fillOpacity = 0.8, stroke = FALSE,popup = ~paste(name,"<br><b>Année:</b>", year,"<br><b>vmax:</b>", round(vmax, digits=2),"km/h","<br><b>rmax:</b>", round(rmax, digits=2),"km", "<br><b>Pression:</b>", round(pressure, digits=2),"hPa","<br><b>Durée de vie:</b>", age_n)) %>% 
+      addCircleMarkers(~lon, ~lat, radius=3, color = ~pal(selected), fillOpacity = 0.8, stroke = FALSE,popup = ~paste(name,"<br><b>Année:</b>", year,"<br><b>vmax:</b>", round(vmax, digits=2),"m.s-1","<br><b>rmax:</b>", round(rmax, digits=2),"km", "<br><b>Pression:</b>", round(pressure, digits=2),"hPa","<br><b>Durée de vie:</b>", age_n)) %>% 
       addLegend("bottomright",
                 pal = pal,
                 values = vals,
@@ -184,6 +184,7 @@ function(input, output, session) {
     dt_py %>% ggplot(aes(x=as.numeric(year), y=pland))+
       geom_col(fill="steelblue",alpha=0.5) +
       geom_smooth(method = "lm",colour = "blue", fill = "lightskyblue") +
+      ggtitle("Évolution du pourcentage de cyclones qui ont touché la terre au cours du temps")+
       scale_x_continuous(breaks=seq(min(dt_py$year),max(dt_py$year),by=5)) +
       labs(x="Années", y="Pourcentage de cyclones ayant touchés la terre")  +
       theme(axis.line = element_line(colour = "black"),
@@ -191,7 +192,7 @@ function(input, output, session) {
             panel.grid.minor = element_blank(), #suppression de la grille mineure
             panel.border = element_blank(), #suppression du cadre
             panel.background = element_blank(), #suppression du fond
-            text = element_text(size = 15))
+            text = element_text(size = 13.5))
   })
-  
 }
+
