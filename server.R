@@ -73,19 +73,29 @@ function(input, output, session) {
       palette = "viridis",  
       domain = rng   # la variable à représenter
     )
+    if (var=="age"){
+      car <- "Nombre d'heures de vie"
+    }
+    if (var=="pressure"){
+      car <- "Valeur de la pression (hPa)"
+    }
+    if (var=="rmax"){
+      car <- "Valeur du rayon maximal (m)"
+    }
+    if (var=="vmax"){
+      car <- "Valeur de la vitesse maximale (km/h)"
+    }
     leaflet(data = dt,options = leafletOptions(worldCopyJump = TRUE)) %>% 
       addTiles() %>% 
       addCircleMarkers(~lon, ~lat, radius=3, color = ~pal(selected), fillOpacity = 0.8, stroke = FALSE,popup = ~paste(name,"<br><b>Année:</b>", year,"<br><b>vmax:</b>", round(vmax, digits=2),"km/h","<br><b>rmax:</b>", round(rmax, digits=2),"km", "<br><b>Pression:</b>", round(pressure, digits=2),"hPa","<br><b>Durée de vie:</b>", age_n)) %>% 
       addLegend("bottomright",
                 pal = pal,
                 values = vals,
-                title = paste("Valeur de", var),
+                title = paste(car),
                 opacity = 1) %>%
       addScaleBar() %>% 
       setView(lng = -150, lat = 0, zoom = 2)
   })
-  
-  
   
   
   ##############################################################################
@@ -159,7 +169,17 @@ function(input, output, session) {
   
   output$plot_land <- renderPlot({
     dt_py <- dtp %>% group_by(year) %>% summarise (pland=mean(land=="TRUE")*100)
-    dt_py %>% ggplot(aes(x=as.numeric(year), y=pland))+geom_col(fill="steelblue") + scale_x_continuous(breaks=seq(min(dt_py$year),max(dt_py$year),by=5)) + labs(x="Années", y="Pourcentage de cyclones ayant touchés la terre") + theme_minimal() 
+    dt_py %>% ggplot(aes(x=as.numeric(year), y=pland))+
+      geom_col(fill="steelblue",alpha=0.5) +
+      geom_smooth(method = "lm",colour = "blue", fill = "lightskyblue") +
+      scale_x_continuous(breaks=seq(min(dt_py$year),max(dt_py$year),by=5)) +
+      labs(x="Années", y="Pourcentage de cyclones ayant touchés la terre")  +
+      theme(axis.line = element_line(colour = "black"),
+            panel.grid.major = element_blank(), #Suppression de la grille majeure
+            panel.grid.minor = element_blank(), #suppression de la grille mineure
+            panel.border = element_blank(), #suppression du cadre
+            panel.background = element_blank(), #suppression du fond
+            text = element_text(size = 15))
   })
   
 }

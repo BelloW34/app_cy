@@ -83,7 +83,11 @@ texte_into_2 <- list(para1 = tagList(
 )
 
 texte_page_2 <- list(para1 = tagList(
-  p("texte a compléter"),
+  p("Nous avons à disposition dans le jeu de données les coordonnées des cyclones pour chaque prise de mesure. 
+    Ainsi, nous pouvons représenter les cyclones sur une carte interactive en choisissant de représenter les cyclones d'une année
+    ou d'une période. Les cyclones sont coloriés selon la variable choisie, permettant de visualiser l'évolution des caractéristiques d'un même cyclone
+    au cours du temps (la vitesse maximale (Vmax), la pression au centre (Pression), le rayon maximal (Rmax)) ou le sens de déplacement du cyclone avec la variable Heures de vie.
+    Il est également possible de cliquer sur un point pour obtenir toutes les informations le concernant."),
 )
 )
 
@@ -113,11 +117,11 @@ texte_page_3C <- list(para1 = tagList(
 texte_page_conclusion <- list(para1 = tagList(
   p("Les données à notre disposition nous permettent de voir des variations au 
     cours du temps des caractéristiques des cyclones, liées au réchauffement 
-    climatique : En effet, la vitesse maximum des vents (vmax) a augmentée au 
-    cours du temps. A l'inverse, la pression (pression) au centre des cyclones 
-    et leurs rayons entre le centre et la bande des vents les plus forts (rmax) 
-    on diminués. Enfin on observe que le réchauffement climatique ne favorise 
-    pas une augmentation du nombre de cyclone par ans (voir régressions). "),
+    climatique : En effet, la vitesse maximale des vents (vmax) a augmentée au 
+    cours du temps. À l'inverse, la pression (pression) au centre des cyclones 
+    et leur rayon entre le centre et la bande des vents les plus forts (rmax) 
+    ont diminués. Enfin on observe que le réchauffement climatique ne favorise 
+    pas une augmentation du nombre de cyclone par an."),
   
   p("A titre d'interprétation, la baisse de la pression au centre des cyclones 
   et l'augmentation de la vitesse maximale des vents au cours du temps 

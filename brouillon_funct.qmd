@@ -30,3 +30,25 @@ corrplot(M, method="color", type="upper")
 ```
 
 Si besoin, c'est possible de faire un fichier par personne
+
+
+
+```{r}
+
+dt_py <- dtp %>% group_by(year) %>% summarise (pland=mean(land=="TRUE")*100)
+
+
+dt_py %>% ggplot(aes(x=as.numeric(year), y=pland))+
+  geom_col(fill="steelblue",alpha=0.5) +
+  geom_smooth(method = "lm") +
+  scale_x_continuous(breaks=seq(min(dt_py$year),max(dt_py$year),by=5)) +
+  labs(x="Années", y="Pourcentage de cyclones ayant touchés la terre")  +
+  theme(axis.line = element_line(colour = "black"),
+        panel.grid.major = element_blank(), #Suppression de la grille majeure
+        panel.grid.minor = element_blank(), #suppression de la grille mineure
+        panel.border = element_blank(), #suppression du cadre
+        panel.background = element_blank(), #suppression du fond
+        text = element_text(size = 18))
+
+```
+
