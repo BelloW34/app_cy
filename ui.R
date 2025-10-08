@@ -47,7 +47,7 @@ body <- dashboardBody(
             
             navset_tab(
               nav_panel("Variations mensuelles pluriannuelles",
-                        texte_page_3B$para1,
+                        texte_page_3A$para1,
                         radioButtons("choixvar", "Choisissez la variable d'étude :",
                                      choices = list("Vitesse maximale" = "vmax", "Rayon maximal" = "rmax", "Pression"="pressure", "Nombre de cyclone" = "number"),
                                      selected = "vmax"
@@ -58,7 +58,7 @@ body <- dashboardBody(
               ),
               
               nav_panel("Régressions",
-                        texte_page_3A$para1,
+                        texte_page_3B$para1,
                         radioButtons("choixvarexp", "Choisissez la variable d'étude :",
                                      choices = list("Vitesse maximale" = "vmax", "Rayon maximal" = "rmax", "Pression"="pressure", "Nombre de cyclone" = "number"),
                                      selected = "vmax"),

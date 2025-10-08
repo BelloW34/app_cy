@@ -45,7 +45,7 @@ texte_into_2 <- list(para1 = tagList(
   p("- terre : Bouléen indiquant si un cyclone a touché terre"),
   p("- vmax : Vitesse maximale des vents en m.s-1 modélisée"),
   p("- pression : Pression minimum au centre du cyclone modélisé"),
-  p("rmax : Distance entre la zone de plus basse pression au centre du cyclone et
+  p("-rmax : Distance entre la zone de plus basse pression au centre du cyclone et
     la bande ou les vents atteignent leur vitesse maximale en km modélisé"),
   p("-R34 : distances depuis le centre du cyclone jusqu'a la zone où la vitesse 
     des vents atteind 34 nœuds en km modélisé"),
@@ -120,21 +120,19 @@ texte_page_conclusion <- list(para1 = tagList(
     climatique : En effet, la vitesse maximale des vents (vmax) a augmentée au 
     cours du temps. À l'inverse, la pression (pression) au centre des cyclones 
     et leur rayon entre le centre et la bande des vents les plus forts (rmax) 
-    ont diminués. Enfin on observe que le réchauffement climatique ne favorise 
-    pas une augmentation du nombre de cyclone par an."),
+    ont diminués."),
   
   p("A titre d'interprétation, la baisse de la pression au centre des cyclones 
   et l'augmentation de la vitesse maximale des vents au cours du temps 
   s'explique très bien par le réchauffement climatique. En effet, l'augmentation
   de la température de surface des océans favorise des ascendances d'air plus 
-  forte et donc une baisse de pression plus importante. Cette baisse de pression
-  plus importante renforce le gradient de pression atmosphérique entre le centre 
-  et la périphérie du cyclone, d'où des vents plus forts."),
+  forte d'où des vents plus forts."),
   
   p("Contrairement à se qu'on aurait pu penser, une augmentation du nombre de 
   cyclones dans le context actuel de réchauffement climatique n'est pas 
   observé avec nos données. En revanche, ces cyclones sont davantage dangereux
-  car capable de développer des vents plus puissants. Aussi, la baisse de 
-  pression au cœur des cyclones augmente le risque de submersions marines. "),
+  car capable de développer des vents plus puissants. Aussi, il semble que un 
+  plus grand pourcentage de cyclones touchent les continents, comme montré dans
+  le diargramme en bâton. "),
 )
 )
