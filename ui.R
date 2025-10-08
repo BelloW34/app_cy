@@ -63,17 +63,27 @@ body <- dashboardBody(
                                      choices = list("Vitesse maximale" = "vmax", "Rayon maximal" = "rmax", "Pression"="pressure", "Nombre de cyclone" = "number"),
                                      selected = "vmax"),
                         plotOutput("plot_varexp"),
+              ),
+              
+              nav_panel("Correlation",
+                        texte_page_3C$para1,
+                        img(src = "corrplot.png", height = "500px", width = "500px")
               )
               
             )
     ),
     
+    
+    
+    
+    
+    
+    
+    
     ############### Conclusion ##############
     tabItem(tabName = "conclusion",
             texte_page_conclusion$para1, 
-            plotOutput("plot_land"),
-            texte_page_conclusion$para1,
-            img(src = "corrplot.png", height = "500px", width = "500px"))
+            plotOutput("plot_land"))
   )
 )
 

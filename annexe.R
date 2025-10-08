@@ -105,6 +105,11 @@ texte_page_3B <- list(para1 = tagList(
 )
 )
 
+texte_page_3C <- list(para1 = tagList(
+  p("Texte a compléter"),
+)
+)
+
 texte_page_conclusion <- list(para1 = tagList(
   p("Les données à notre disposition nous permettent de voir des variations au 
     cours du temps des caractéristiques des cyclones, liées au réchauffement 
@@ -112,15 +117,20 @@ texte_page_conclusion <- list(para1 = tagList(
     cours du temps. A l'inverse, la pression (pression) au centre des cyclones 
     et leurs rayons entre le centre et la bande des vents les plus forts (rmax) 
     on diminués. Enfin on observe que le réchauffement climatique ne favorise 
-    pas une augmentation du nombre de cyclone par ans."),
+    pas une augmentation du nombre de cyclone par ans (voir régressions). "),
   
   p("A titre d'interprétation, la baisse de la pression au centre des cyclones 
-    et l'augmentation de la vitesse maximale des vents au cours du temps 
-    s'explique très bien par le réchauffement climatique. En effet, 
-    l'augmentation de la température de surface des océans favorise des 
-    ascendances d'air plus forte et donc une baisse de pression plus importante. 
-    Cette baisse de pression plus importante renforce le gradient de pression 
-    atmosphérique entre le centre et la périphérie du cyclone, d'où des vents 
-    plus forts. "),
+  et l'augmentation de la vitesse maximale des vents au cours du temps 
+  s'explique très bien par le réchauffement climatique. En effet, l'augmentation
+  de la température de surface des océans favorise des ascendances d'air plus 
+  forte et donc une baisse de pression plus importante. Cette baisse de pression
+  plus importante renforce le gradient de pression atmosphérique entre le centre 
+  et la périphérie du cyclone, d'où des vents plus forts."),
+  
+  p("Contrairement à se qu'on aurait pu penser, une augmentation du nombre de 
+  cyclones dans le context actuel de réchauffement climatique n'est pas 
+  observé avec nos données. En revanche, ces cyclones sont davantage dangereux
+  car capable de développer des vents plus puissants. Aussi, la baisse de 
+  pression au cœur des cyclones augmente le risque de submersions marines. "),
 )
 )
