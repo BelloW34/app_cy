@@ -8,6 +8,25 @@ Ce fichier est la pour travailler sur les fonctions et sur les visus avant de le
 Il suffit d'ouvrir un chunk par fonction
 ```{r}
 
+v <- crea_data("vmax", month_t = F) |> 
+  rename("vitesse max" = y)
+r <- crea_data("rmax", month_t = F) |> 
+  rename("rayon max" = y)
+p <- crea_data("pressure", month_t = F) |> 
+  rename("pression" = y)
+
+dt_cor <- v |> 
+  left_join(r) |> 
+  left_join(p) |> 
+  select(- year)
+
+library(corrplot)
+
+M<-cor(dt_cor)
+head(round(M,2))
+corrplot <- corrplot(M, type="upper")
+corrplot(M, method="color", type="upper")
+
 ```
 
 Si besoin, c'est possible de faire un fichier par personne
