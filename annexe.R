@@ -40,16 +40,16 @@ texte_into <- list(para1 = tagList(
   p("- lat : latitude (issu des données IBTrACS)"),
   p("- lon : longitude (issu des données IBTrACS)"),
   p("- terre : Bouléen indiquant si un cyclone a touché terre"),
-  p("- vmax : Vitesse maximale des vents (noeuds.s-1)"),
-  p("- pression : Pression minimum au centre du cyclone"),
+  p("- vmax : Vitesse maximale des vents en m.s-1 modélisée"),
+  p("- pression : Pression minimum au centre du cyclone modélisé"),
   p("rmax : Distance entre la zone de plus basse pression au centre du cyclone et
-    la bande ou les vents atteignent leur vitesse maximale en km"),
+    la bande ou les vents atteignent leur vitesse maximale en km modélisé"),
   p("-R34 : distances depuis le centre du cyclone jusqu'a la zone où la vitesse 
-    des vents atteind 34 nœuds en km."),
+    des vents atteind 34 nœuds en km modélisé"),
   p("-R50 : distances depuis le centre du cyclone jusqu'a la zone où la vitesse 
-    des vents atteind 50 nœuds en km."),
+    des vents atteind 50 nœuds en km modélisé"),
   p("-R64 : distances depuis le centre du cyclone jusqu'a la zone où la vitesse 
-    des vents atteind 64 nœuds en km."),
+    des vents atteind 64 nœuds en km modélisé"),
   
   p(strong("Problématisation :")),
   p("Les cyclones tropicaux sont des phénomènes météorologiques pouvant être 
@@ -73,7 +73,9 @@ texte_into <- list(para1 = tagList(
     devenues satellitaires, pour éviter un biais d'échantillonnage."),
   p("Les colonnes R34, R50 et R64 montrent beacoup de données manquantes et la 
     variable Rmax donne des informations similaires. Les colonnes R34, R50 et R64
-    ne seront donc non utilisées ici.")
+    ne seront donc non utilisées ici."),
+  
+  p(strong("Appercu du tableau de données :")),
 )
 )
 
@@ -83,6 +85,11 @@ texte_page_2 <- list(para1 = tagList(
 )
 
 texte_page_3A <- list(para1 = tagList(
+  p("Texte a compléter"),
+)
+)
+
+texte_page_3B <- list(para1 = tagList(
   p("Sur cette page nous proposons de représenter l'évolution de différentes 
     variables décrivant les caractéristiques des cyclones au cours du temps avec
     au choix: La vitesse maximal des vent (vmax), la pression au centre du 
@@ -90,13 +97,8 @@ texte_page_3A <- list(para1 = tagList(
     vents atteignent leur vitesse maximal (Rmax) et enfin le nombre de cyclone 
     (Nombre). Cette évolution est représentée par des graphiques montrant les 
     moyennes de la variable choisie pour chaque années. Une courbe de régression 
-    en gris ainsi qu'une bande bleue montrant l'incertitude de cette régression 
-    sont également représentées."),
-)
-)
-
-texte_page_3B <- list(para1 = tagList(
-  p("texte a compléter"),
+    bleue foncée ainsi qu'une bande bleue clair montrant l'incertitude de cette 
+    régression sont également représentées."),
 )
 )
 

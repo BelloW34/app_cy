@@ -130,7 +130,7 @@ function(input, output, session) {
       plot <- dtp2 |> 
         ggplot()+
         aes(x = year, y = y)+
-        geom_smooth(method = lm, colour = "lightskyblue4", fill = "lightskyblue")+
+        geom_smooth(method = lm, colour = "blue", fill = "lightskyblue")+
         geom_line()+
         
         #Appel des labels variable en fonction des variables choisi
@@ -143,7 +143,7 @@ function(input, output, session) {
             panel.grid.minor = element_blank(), #suppression de la grille mineure
             panel.border = element_blank(), #suppression du cadre
             panel.background = element_blank(), #suppression du fond
-            text = element_text(size = 15)) #augmentation de la taille des labels
+            text = element_text(size = 18)) #augmentation de la taille du texte
       
       #Appel du graphique comme sortie de la fonction ##############################
       return(plot)

@@ -24,9 +24,7 @@ body <- dashboardBody(
     ######################## Presentation ######################## 
     tabItem(tabName = "presentation", 
             texte_into$para1, 
-            verbatimTextOutput("desc_dtp"),
-            texte_into$para2,
-            img(src = "img.jpg", height = 100, width = 150)
+            verbatimTextOutput("desc_dtp")
     ),
     
     ######################## Carte ########################
