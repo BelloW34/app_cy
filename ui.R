@@ -69,7 +69,8 @@ body <- dashboardBody(
     
     ############### Conclusion ##############
     tabItem(tabName = "conclusion",
-            texte_page_conclusion$para1)
+            texte_page_conclusion$para1,
+            img(src = "corrplot.png", height = "500px", width = "500px"))
   )
 )
 
