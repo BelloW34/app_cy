@@ -17,24 +17,28 @@ function(input, output, session) {
   output$plot_var <- renderPlot({
     
     labs_var <- crea_labs(input$choixvar)
-    if(input$choixvar == "number"){
-      y_labs <- labs_var$nom_var
-    }else{y_labs <- paste(labs_var$nom_var, "en", labs_var$unite)}
     
     dt_ym <- crea_data(var = input$choixvar,
                        q1 = input$choixq2, q2 = input$choixq1)
     
-
-      plot_var <- dt_ym |> 
-        ggplot() +
-        aes(x = month, y = y, group = year, colour = year) + 
-        geom_smooth(se = FALSE, alpha = 0.6) +
-        scale_color_viridis(option='viridis',
-                            direction = -1,
-                            begin = 0,
-                            end = 1) +
-        labs(x = "Années", y = y_labs) +
-        theme_classic()
+    if(input$choixvar == "number"){
+      y_labs <- labs_var$nom_var
+    }else{
+      y_labs <- paste(labs_var$nom_var, "en", labs_var$unite)
+    }
+    
+    print(dt_ym)
+    
+    plot_var <- dt_ym |> 
+      ggplot() +
+      aes(x = month, y = y, group = year, colour = year) + 
+      geom_smooth(se = FALSE, alpha = 0.6) +
+      scale_color_viridis(option='viridis',
+                          direction = -1,
+                          begin = 0,
+                          end = 1) +
+      labs(x = "Années", y = y_labs) +
+      theme_classic()
     
     
     return(plot_var)

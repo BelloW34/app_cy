@@ -18,8 +18,9 @@ crea_data <- function(var, month_t = T, q1 = NULL, q2 = 0.5, fill = T,
         summarise(year = min(year), 
                   month = min(month)) |> 
         group_by(year, month) |> 
-        summarise(y = n()) 
+        summarise(y = n())
       
+
       if(fill){  #met un zero aux mois sans cyclones
         dtp2 <- expand.grid(1:12, year1:year2) |> 
           rename(month = Var1, year = Var2) |> 
@@ -102,7 +103,7 @@ crea_labs <- function(var, a10 = NULL){
   if(var == "vmax"){
     labs_v$nom_var = "vitesse maximale moyenne"
     labs_v$pronom = "la"
-    labs_v$unite = "km/h"
+    labs_v$unite = "m/s"
   }
   else if(var == "pressure"){
     labs_v$nom_var <- "pression moyenne"
