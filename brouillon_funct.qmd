@@ -32,6 +32,34 @@ table(dt_cor)
 plot(dt_cor)
 ggpairs(dt_cor)
 
+################################################
+
+
+
+
+
+dt_cor_t <- dtp |> 
+  select(vmax, rmax, pressure)
+
+library(corrplot)
+library(GGally)
+
+M_t <-cor(dt_cor_t)
+head(round(M_t,2))
+corrplot <- corrplot(M_t, type="upper")
+corrplot(M_t, method="color", type="upper")
+
+table(dt_cor)
+plot(dt_cor)
+ggpairs(dt_cor)
+
+
+
+
+
+
+
+
 ```
 
 Si besoin, c'est possible de faire un fichier par personne
