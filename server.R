@@ -22,7 +22,7 @@ function(input, output, session) {
     }else{y_labs <- paste(labs_var$nom_var, "en", labs_var$unite)}
     
     dt_ym <- crea_data(var = input$choixvar,
-                       q1 = input$choixq1, q2 = input$choixq2)
+                       q1 = input$choixq2, q2 = input$choixq1)
     
 
       plot_var <- dt_ym |> 
