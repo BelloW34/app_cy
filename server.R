@@ -22,10 +22,9 @@ function(input, output, session) {
     }else{y_labs <- paste(labs_var$nom_var, "en", labs_var$unite)}
     
     dt_ym <- crea_data(var = input$choixvar,
-                       month_t = (input$month_tt == "ym"),
                        q1 = input$choixq1, q2 = input$choixq2)
     
-    if(input$month_tt == "ym"){
+
       plot_var <- dt_ym |> 
         ggplot() +
         aes(x = month, y = y, group = year, colour = year) + 
@@ -36,20 +35,6 @@ function(input, output, session) {
                             end = 1) +
         labs(x = "Années", y = y_labs) +
         theme_classic()
-    } else {
-      plot_var <- dt_ym |> 
-        ggplot() +
-        aes(x = year, y = y) + 
-        geom_line() +
-        scale_color_viridis(option='magma',
-                            direction = -1,
-                            begin = 0,
-                            end = 1) +
-        labs(x = "Années", y = y_labs) +
-        theme_classic() +
-        theme(axis.text.x = element_text(angle = 45, hjust = 1))
-    }
-    
     
     
     return(plot_var)

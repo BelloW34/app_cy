@@ -57,10 +57,6 @@ body <- dashboardBody(
                                      choices = list("Nombre" = "number", "Vmax" = "vmax", "Rmax" = "rmax", "Pression"="pressure"),
                                      selected = "number"
                         ),
-                        radioButtons("month_tt", "la temporalité :",
-                                     choices = list("Année/mois" = "ym", "Année" = "y"),
-                                     selected = "ym"
-                        ),
                         sliderInput("choixq1","Choisissez la valeur de q1:",min = 0,max = 1, value = 0.9),
                         sliderInput("choixq2","Choisissez la valeur de q2:",min = 0,max = 1, value = 0.9),
                         plotOutput("plot_var")
