@@ -21,11 +21,16 @@ dt_cor <- v |>
   select(- year)
 
 library(corrplot)
+library(GGally)
 
 M<-cor(dt_cor)
 head(round(M,2))
 corrplot <- corrplot(M, type="upper")
 corrplot(M, method="color", type="upper")
+
+table(dt_cor)
+plot(dt_cor)
+ggpairs(dt_cor)
 
 ```
 

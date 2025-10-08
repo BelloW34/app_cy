@@ -26,20 +26,26 @@ function(input, output, session) {
     }else{
       y_labs <- paste(labs_var$nom_var, "en", labs_var$unite)
     }
+
+    print(head(dt_ym))
     
-    print(dt_ym)
-    
-    plot_var <- dt_ym |> 
-      ggplot() +
-      aes(x = month, y = y, group = year, colour = year) + 
-      geom_smooth(se = FALSE, alpha = 0.6) +
-      scale_color_viridis(option='viridis',
-                          direction = -1,
-                          begin = 0,
-                          end = 1) +
-      labs(x = "Années", y = y_labs) +
-      theme_classic()
-    
+
+      plot_var <- dt_ym |> 
+        ggplot() +
+        aes(x = month, y = y, group = year, colour = year) + 
+        geom_smooth(se = FALSE, alpha = 0.6) +
+        scale_color_viridis(option='viridis',
+                            direction = -1,
+                            begin = 0,
+                            end = 1) +
+        labs(x = "Années", y = y_labs) +
+        theme(axis.line = element_line(colour = "black"),
+              panel.grid.major = element_blank(), #Suppression de la grille majeure
+              panel.grid.minor = element_blank(), #suppression de la grille mineure
+              panel.border = element_blank(), #suppression du cadre
+              panel.background = element_blank(), #suppression du fond
+              text = element_text(size = 15)) #augmentation de la taille des labels
+
     
     return(plot_var)
   })

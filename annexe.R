@@ -85,7 +85,29 @@ texte_page_2 <- list(para1 = tagList(
 )
 
 texte_page_3A <- list(para1 = tagList(
-  p("Texte a compléter"),
+    p("Sur cette page nous proposons de représenter l'évolution de différentes 
+    variables décrivant les caractéristiques des cyclones au cours du temps avec
+    au choix:"),
+    p("La vitesse maximal des vent (vmax), la pression au centre du 
+    cyclone (Pression), le rayon entre le centre du cyclone et la bande ou les 
+    vents atteignent leur vitesse maximal (Rmax) et enfin le nombre de cyclone 
+    (Nombre)."),
+    p("Ici, il est possible de voir la variation au cours de l'année 
+    et sur les différentes années de la variable choisie."),
+    p("Pour la variable 'Nombre' les quantiles (q1 et q2) n'ont pas d'impact."),
+    p("Pour les autres variables, chaques cyclones est résumé par son quartile 
+    q1. Chaque mois s'exprime comme le quartile q2 du quantile précedent sur la 
+    variable choisi pour les cyclones qui commence dans le mois.
+      "),
+    p("Exemple : "),
+    p("Si pour pression q1 = 0 et q2 = 0.5, alors on regarde comment évolue la
+    mediane (0.5) de la pression minimal (1) de chaques cyclones."),
+    p("Si pour vmax q1 = 0.5 et q2 = 1, alors on regarde la plus grande (1) 
+  vitesse maximale mediane (0.5) de chaques cyclones."),
+    
+    
+    p("Il est conseiller de regarder les plus grandes valeures de vmax, q1 = 0.9 et 
+    les plus petites valeures de rmax et pression, q1 = 0.1")
 )
 )
 
@@ -99,6 +121,14 @@ texte_page_3B <- list(para1 = tagList(
     moyennes de la variable choisie pour chaque années. Une courbe de régression 
     bleue foncée ainsi qu'une bande bleue clair montrant l'incertitude de cette 
     régression sont également représentées."),
+
+)
+)
+
+
+texte_page_3C <- list(para1 = tagList(
+  p("Slaaaaaaaaaaaaaaaaaaaaaaaaaaaaaalalalalallalala"),
+  
 )
 )
 
