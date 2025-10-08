@@ -43,13 +43,13 @@ texte_into <- list(para1 = tagList(
   p("- vmax : Vitesse maximale des vents (noeuds.s-1)"),
   p("- pression : Pression minimum au centre du cyclone"),
   p("rmax : Distance entre la zone de plus basse pression au centre du cyclone et
-    la bande ou les vents atteignent leur vitesse maximale"),
+    la bande ou les vents atteignent leur vitesse maximale en km"),
   p("-R34 : distances depuis le centre du cyclone jusqu'a la zone où la vitesse 
-    des vents atteind 34 nœuds."),
+    des vents atteind 34 nœuds en km."),
   p("-R50 : distances depuis le centre du cyclone jusqu'a la zone où la vitesse 
-    des vents atteind 50 nœuds."),
+    des vents atteind 50 nœuds en km."),
   p("-R64 : distances depuis le centre du cyclone jusqu'a la zone où la vitesse 
-    des vents atteind 64 nœuds."),
+    des vents atteind 64 nœuds en km."),
   
   p(strong("Problématisation :")),
   p("Les cyclones tropicaux sont des phénomènes météorologiques pouvant être 
