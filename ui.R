@@ -23,7 +23,9 @@ body <- dashboardBody(
   tabItems(    
     ######################## Presentation ######################## 
     tabItem(tabName = "presentation", 
-            texte_into$para1, 
+            texte_into_1$para1,
+            img(src = "schema_cyclone.jpg", height = "500px", width = "800px"),
+            texte_into_2$para1,
             verbatimTextOutput("desc_dtp")
     ),
     
@@ -45,7 +47,7 @@ body <- dashboardBody(
             
             navset_tab(
               nav_panel("Variations mensuelles pluriannuelles",
-                        texte_page_3B$para1,
+                        texte_page_3A$para1,
                         radioButtons("choixvar", "Choisissez la variable d'étude :",
                                      choices = list("Vitesse maximale" = "vmax", "Rayon maximal" = "rmax", "Pression"="pressure", "Nombre de cyclone" = "number"),
                                      selected = "vmax"
@@ -56,20 +58,32 @@ body <- dashboardBody(
               ),
               
               nav_panel("Régressions",
-                        texte_page_3A$para1,
+                        texte_page_3B$para1,
                         radioButtons("choixvarexp", "Choisissez la variable d'étude :",
                                      choices = list("Vitesse maximale" = "vmax", "Rayon maximal" = "rmax", "Pression"="pressure", "Nombre de cyclone" = "number"),
                                      selected = "vmax"),
                         plotOutput("plot_varexp"),
+              ),
+              
+              nav_panel("Correlation",
+                        texte_page_3C$para1,
+                        img(src = "corrplot.png", height = "500px", width = "500px")
               )
               
             )
     ),
     
+    
+    
+    
+    
+    
+    
+    
     ############### Conclusion ##############
     tabItem(tabName = "conclusion",
-            texte_page_conclusion$para1,
-            img(src = "corrplot.png", height = "500px", width = "500px"))
+            texte_page_conclusion$para1, 
+            plotOutput("plot_land"))
   )
 )
 
