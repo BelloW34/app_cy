@@ -112,7 +112,7 @@ crea_labs <- function(var, a10 = NULL){
   else if (var == "rmax"){
     labs_v$nom_var <- "rayon maximum moyen"
     labs_v$pronom <- "le"
-    labs_v$unite <- "m"
+    labs_v$unite <- "km"
   }
   else if(var == "number"){
     labs_v$nom_var <- "nombre"

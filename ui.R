@@ -49,7 +49,7 @@ body <- dashboardBody(
               nav_panel("A",
                         texte_page_3A$para1,
                         radioButtons("choixvarexp", "Choisissez la variable d'étude :",
-                                     choices = list("Vmax" = "vmax", "Rmax" = "rmax", "Pression"="pressure", "Nombre" = "number"),
+                                     choices = list("Vitesse maximale" = "vmax", "Rayon maximal" = "rmax", "Pression"="pressure", "Nombre de cyclone" = "number"),
                                      selected = "vmax"),
                         plotOutput("plot_varexp"),
               ),
@@ -57,12 +57,8 @@ body <- dashboardBody(
               nav_panel("B",
                         texte_page_3B$para1,
                         radioButtons("choixvar", "Choisissez la variable d'étude :",
-                                     choices = list("Nombre" = "number", "Vmax" = "vmax", "Rmax" = "rmax", "Pression"="pressure"),
-                                     selected = "number"
-                        ),
-                        radioButtons("month_tt", "la temporalité :",
-                                     choices = list("Année/mois" = "ym", "Année" = "y"),
-                                     selected = "ym"
+                                     choices = list("Vitesse maximale" = "vmax", "Rayon maximal" = "rmax", "Pression"="pressure", "Nombre de cyclone" = "number"),
+                                     selected = "vmax"
                         ),
                         sliderInput("choixq1","Choisissez la valeur de q1:",min = 0,max = 1, value = 0.9),
                         sliderInput("choixq2","Choisissez la valeur de q2:",min = 0,max = 1, value = 0.9),

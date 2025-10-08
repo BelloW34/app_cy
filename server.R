@@ -22,34 +22,19 @@ function(input, output, session) {
     }else{y_labs <- paste(labs_var$nom_var, "en", labs_var$unite)}
     
     dt_ym <- crea_data(var = input$choixvar,
-                       month_t = (input$month_tt == "ym"),
                        q1 = input$choixq1, q2 = input$choixq2)
     
-    if(input$month_tt == "ym"){
+
       plot_var <- dt_ym |> 
         ggplot() +
         aes(x = month, y = y, group = year, colour = year) + 
         geom_smooth(se = FALSE, alpha = 0.6) +
-        scale_color_viridis(option='magma',
+        scale_color_viridis(option='viridis',
                             direction = -1,
                             begin = 0,
                             end = 1) +
         labs(x = "Années", y = y_labs) +
         theme_classic()
-    } else {
-      plot_var <- dt_ym |> 
-        ggplot() +
-        aes(x = year, y = y) + 
-        geom_line() +
-        scale_color_viridis(option='magma',
-                            direction = -1,
-                            begin = 0,
-                            end = 1) +
-        labs(x = "Années", y = y_labs) +
-        theme_classic() +
-        theme(axis.text.x = element_text(angle = 45, hjust = 1))
-    }
-    
     
     
     return(plot_var)
@@ -90,7 +75,7 @@ function(input, output, session) {
     )
     leaflet(data = dt,options = leafletOptions(worldCopyJump = TRUE)) %>% 
       addTiles() %>% 
-      addCircleMarkers(~lon, ~lat, radius=3, color = ~pal(selected), fillOpacity = 0.8, stroke = FALSE,popup = ~paste(name,"<br><b>Année:</b>", year,"<br><b>vmax:</b>", round(vmax, digits=2),"km/h","<br><b>rmax:</b>", round(rmax, digits=2),"m", "<br><b>Pression:</b>", round(pressure, digits=2),"hPa","<br><b>Durée de vie:</b>", age_n)) %>% 
+      addCircleMarkers(~lon, ~lat, radius=3, color = ~pal(selected), fillOpacity = 0.8, stroke = FALSE,popup = ~paste(name,"<br><b>Année:</b>", year,"<br><b>vmax:</b>", round(vmax, digits=2),"km/h","<br><b>rmax:</b>", round(rmax, digits=2),"km", "<br><b>Pression:</b>", round(pressure, digits=2),"hPa","<br><b>Durée de vie:</b>", age_n)) %>% 
       addLegend("bottomright",
                 pal = pal,
                 values = vals,
