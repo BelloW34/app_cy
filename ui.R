@@ -24,9 +24,7 @@ body <- dashboardBody(
     ######################## Presentation ######################## 
     tabItem(tabName = "presentation", 
             texte_into$para1, 
-            verbatimTextOutput("desc_dtp"),
-            texte_into$para2,
-            img(src = "img.jpg", height = 100, width = 150)
+            verbatimTextOutput("desc_dtp")
     ),
     
     ######################## Carte ########################
@@ -46,14 +44,6 @@ body <- dashboardBody(
     tabItem(tabName = "analyse",
             
             navset_tab(
-              nav_panel("Régressions",
-                        texte_page_3A$para1,
-                        radioButtons("choixvarexp", "Choisissez la variable d'étude :",
-                                     choices = list("Vitesse maximale" = "vmax", "Rayon maximal" = "rmax", "Pression"="pressure", "Nombre de cyclone" = "number"),
-                                     selected = "vmax"),
-                        plotOutput("plot_varexp"),
-              ),
-              
               nav_panel("Variations mensuelles pluriannuelles",
                         texte_page_3B$para1,
                         radioButtons("choixvar", "Choisissez la variable d'étude :",
@@ -63,14 +53,25 @@ body <- dashboardBody(
                         sliderInput("choixq1","Choisissez la valeur de q1:",min = 0,max = 1, value = 0.9),
                         sliderInput("choixq2","Choisissez la valeur de q2:",min = 0,max = 1, value = 0.9),
                         plotOutput("plot_var")
+              ),
+              
+              nav_panel("Régressions",
+                        texte_page_3A$para1,
+                        radioButtons("choixvarexp", "Choisissez la variable d'étude :",
+                                     choices = list("Vitesse maximale" = "vmax", "Rayon maximal" = "rmax", "Pression"="pressure", "Nombre de cyclone" = "number"),
+                                     selected = "vmax"),
+                        plotOutput("plot_varexp"),
               )
+              
             )
     ),
     
     ############### Conclusion ##############
     tabItem(tabName = "conclusion",
             texte_page_conclusion$para1, 
-            plotOutput("plot_land"))
+            plotOutput("plot_land"),
+            texte_page_conclusion$para1,
+            img(src = "corrplot.png", height = "500px", width = "500px"))
   )
 )
 
