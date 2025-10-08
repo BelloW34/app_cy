@@ -127,7 +127,7 @@ texte_page_3B <- list(para1 = tagList(
 
 
 texte_page_3C <- list(para1 = tagList(
-  p("Slaaaaaaaaaaaaaaaaaaaaaaaaaaaaaalalalalallalala"),
+  p("Slaaaaaaaaaaaaaaaaaaaaaaaaaaaaaalalalalallalala")
   
 )
 )
