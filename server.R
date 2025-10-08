@@ -22,13 +22,11 @@ function(input, output, session) {
                        q1 = input$choixq2, q2 = input$choixq1)
     
     if(input$choixvar == "number"){
-      y_labs <- labs_var$nom_var
+      y_labs <- labs_var$nom
     }else{
-      y_labs <- paste(labs_var$nom_var, "en", labs_var$unite)
+      y_labs <- paste(labs_var$nom, "en", labs_var$unite)
     }
 
-    print(head(dt_ym))
-    
 
       plot_var <- dt_ym |> 
         ggplot() +
@@ -38,7 +36,11 @@ function(input, output, session) {
                             direction = -1,
                             begin = 0,
                             end = 1) +
-        labs(x = "Années", y = y_labs) +
+        labs(x = "Années",
+             y = y_labs,
+             title = paste0("Variations mensuelles des ", 100*input$choixq1 , "% du ",
+                            100*input$choixq2 , "% de ", labs_var$pronom, " ",
+                            labs_var$nom)) +
         theme(axis.line = element_line(colour = "black"),
               panel.grid.major = element_blank(), #Suppression de la grille majeure
               panel.grid.minor = element_blank(), #suppression de la grille mineure
@@ -174,7 +176,7 @@ function(input, output, session) {
   })
   
   ##############################################################################
-  ######                     affichage fonction land              #####
+  ######                        affichage fonction land                    #####
   ##############################################################################
   
   output$plot_land <- renderPlot({

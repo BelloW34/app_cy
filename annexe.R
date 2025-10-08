@@ -139,11 +139,6 @@ texte_page_3C <- list(para1 = tagList(
 )
 )
 
-texte_page_3C <- list(para1 = tagList(
-  p("Texte a compléter"),
-)
-)
-
 texte_page_conclusion <- list(para1 = tagList(
   p("Les données à notre disposition nous permettent de voir des variations au 
     cours du temps des caractéristiques des cyclones, liées au réchauffement 

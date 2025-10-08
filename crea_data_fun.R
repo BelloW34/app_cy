@@ -101,16 +101,19 @@ crea_labs <- function(var, a10 = NULL){
   
   #1. Creation des conditions
   if(var == "vmax"){
+    labs_v$nom = "vitesse maximale"
     labs_v$nom_var = "vitesse maximale moyenne"
     labs_v$pronom = "la"
     labs_v$unite = "m/s"
   }
   else if(var == "pressure"){
+    labs_v$nom = "pression"
     labs_v$nom_var <- "pression moyenne"
     labs_v$pronom <- "la"
     labs_v$unite <- "hPa"
   }
   else if (var == "rmax"){
+    labs_v$nom = "rayon maximum"
     labs_v$nom_var <- "rayon maximum moyen"
     labs_v$pronom <- "le"
     labs_v$unite <- "km"
