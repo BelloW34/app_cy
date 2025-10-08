@@ -90,7 +90,7 @@ function(input, output, session) {
     )
     leaflet(data = dt,options = leafletOptions(worldCopyJump = TRUE)) %>% 
       addTiles() %>% 
-      addCircleMarkers(~lon, ~lat, radius=3, color = ~pal(selected), fillOpacity = 0.8, stroke = FALSE,popup = ~paste(name,"<br><b>Année:</b>", year,"<br><b>vmax:</b>", round(vmax, digits=2),"m.s-1","<br><b>rmax:</b>", round(rmax, digits=2),"m", "<br><b>Pression:</b>", round(pressure, digits=2),"Pa","<br><b>Durée de vie:</b>", age_n)) %>% 
+      addCircleMarkers(~lon, ~lat, radius=3, color = ~pal(selected), fillOpacity = 0.8, stroke = FALSE,popup = ~paste(name,"<br><b>Année:</b>", year,"<br><b>vmax:</b>", round(vmax, digits=2),"km/h","<br><b>rmax:</b>", round(rmax, digits=2),"m", "<br><b>Pression:</b>", round(pressure, digits=2),"hPa","<br><b>Durée de vie:</b>", age_n)) %>% 
       addLegend("bottomright",
                 pal = pal,
                 values = vals,
