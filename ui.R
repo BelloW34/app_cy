@@ -8,7 +8,6 @@ header <- dashboardHeader(title = "Cyclones du Pacifique")
 sidebar <- dashboardSidebar(
   sidebarMenu(
     menuItem("Présentation", tabName = "presentation"),
-    menuItem("Exploration des données", tabName = "exploration",  icon = icon("database")),
     menuItem("Carte Interactive", tabName = "carte", icon = icon("map")),
     menuItem("Analyse de Données", tabName = "analyse", icon = icon("chart-bar")),
     menuItem("Conclusion", tabName="conclusion")
@@ -29,15 +28,6 @@ body <- dashboardBody(
             texte_into$para2,
             img(src = "img.jpg", height = 100, width = 150)
     ),
-    ############################################################################
-    #####                      Exploration des Données                     #####
-    ############################################################################
-    tabItem(tabName = "exploration",
-            radioButtons("choixvarexp", "Choisissez la variable d'étude :",
-                         choices = list("Vmax" = "vmax", "Rmax" = "rmax", "Pression"="pressure", "Nombre" = "number"),
-                         selected = "vmax"),
-            plotOutput("plot_varexp")),
-    
     
     ######################## Carte ########################
     tabItem(tabName = "carte", h2("Carte du Pacifique"),
@@ -53,17 +43,30 @@ body <- dashboardBody(
     
     #################  ANALYSE de DONNEE #################
     tabItem(tabName = "analyse",
-            radioButtons("choixvar", "Choisissez la variable d'étude :",
-                         choices = list("Nombre" = "number", "Vmax" = "vmax", "Rmax" = "rmax", "Pression"="pressure"),
-                         selected = "number"
-            ),
-            radioButtons("month_tt", "la temporalité :",
-                         choices = list("Année/mois" = "ym", "Année" = "y"),
-                         selected = "ym"
-            ),
-            sliderInput("choixq1","Choisissez la valeur de q1:",min = 0,max = 1, value = 0.9),
-            sliderInput("choixq2","Choisissez la valeur de q2:",min = 0,max = 1, value = 0.9),
-            plotOutput("plot_var")),
+            
+            navset_tab(
+              nav_panel("A", 
+                        radioButtons("choixvarexp", "Choisissez la variable d'étude :",
+                                     choices = list("Vmax" = "vmax", "Rmax" = "rmax", "Pression"="pressure", "Nombre" = "number"),
+                                     selected = "vmax"),
+                        plotOutput("plot_varexp")
+              ),
+              
+              nav_panel("B",
+                        radioButtons("choixvar", "Choisissez la variable d'étude :",
+                                     choices = list("Nombre" = "number", "Vmax" = "vmax", "Rmax" = "rmax", "Pression"="pressure"),
+                                     selected = "number"
+                        ),
+                        radioButtons("month_tt", "la temporalité :",
+                                     choices = list("Année/mois" = "ym", "Année" = "y"),
+                                     selected = "ym"
+                        ),
+                        sliderInput("choixq1","Choisissez la valeur de q1:",min = 0,max = 1, value = 0.9),
+                        sliderInput("choixq2","Choisissez la valeur de q2:",min = 0,max = 1, value = 0.9),
+                        plotOutput("plot_var")
+              )
+            )
+    ),
     
     ############### Conclusion ##############
     tabItem(tabName = "conclusion")
