@@ -11,17 +11,17 @@ texte_into_1 <- list(para1 = tagList(
     Weather Forecasts Reanalysis 5)"),
   
   p(strong("Qu'est-ce qu'un cyclone :")),
-  p("Les cyclones sont des phénomènes météorologiques caracycloneérisés par de fortes
+  p("Les cyclones sont des phénomènes météorologiques caractérisés par de fortes
     rafales de vent et de fortes précipitaions. L'énergie de ces phénomènes est 
     issue de la chaleur accumulée dans les eaux de surface des océans. Cette 
     chaleur des eaux de surface permet une forte évaporation et un échauffement 
     de la masse d'air susjacente. Il en résulte la formation d'une forte 
     élévation d'air chaud et humide, créant une baisse locale de la pression 
-    atmosphérique par rapport à la masse d'air environnante. En altitude, l'air 
-    ascendant est évacué du cyclone sous forme de vents. Grace à la déviation de 
-    Coriolis issue de la rotation de la Terre, les vents vont être déviés et 
-    entrer en rotation. Cette roation est anti-horaire dans l'hémisphère nord et 
-    horaire dans l'hémisphère sud. "),
+    atmosphérique par rapport à la masse d'air environnante. Ce gradient de 
+    pression permet une forte aspiration d'air a la base du cyclone, formant des
+    vents puissants. Grace à la déviation de Coriolis, les vents vont être 
+    déviés et entrer en rotation. Cette rotation est antihoraire dans 
+    l'hémisphère nord et horaire dans l'hémisphère sud. "),
 )
 )
 
@@ -60,39 +60,46 @@ texte_into_1 <- list(para1 = tagList(
     des vents atteind 64 nœuds en km modélisé"),
   
   p(strong("Problématisation :")),
-  p("Les cyclones tropicaux sont des phénomènes météorologiques pouvant être 
-    dévastateurs pour les installations humaines. Le dérèglement climatique en 
-    cours perturbe les mécanismes à l'origine de ces cyclones. Ceci change donc 
-    les caractéristiques de ces phénomènes météorologiques au cours du temps. 
-    Ainsi, la compréhenssion de l'évolution des caractéristiques des cyclones 
-    est nécessaire pour protéger les populations des risques issus de ces aléas 
-    en contexte de changements climatiques. Nous proposons donc ici de montrer 
-    l'évolution au cours du temps des caractéristiques des cyclones. 
+  p("Les cyclones sont des phénomènes météorologiques pouvant être dévastateurs 
+    pour les installations humaines. Le dérèglement climatique en cours perturbe 
+    les mécanismes à l'origine de ces cyclones. Ceci change donc les 
+    caractéristiques de ces phénomènes météorologiques au cours du temps. Ainsi, 
+    la compréhenssion de l'évolution des caractéristiques des cyclones est 
+    nécessaire pour protéger les populations des risques issus de ces aléas en 
+    contexte de changements climatiques. Ainsi, Nous proposons donc ici de
+    montrer l'évolution au cours du temps des caractéristiques des cyclones. 
     Ces dernières seront plus précisémment la vitesse maximale des vents (vmax), 
     la pression au centre du cyclone (pressure), le rayon des vents maximum 
     (rmax) et le nombre de cyclones. Ceci sera montré a travers une application 
     destiné à de la médiation scientifique"),
   
   p(strong("Modifications apportées aux données :")),
-  p("Avant 1979 les détections de cyclone ne se faisiant pas par satellite 
+  p("Avant 1979 les détections des cyclones ne se faisiant pas par satellite 
     (Xu et al., 2024), ce qui implique que certains d'entre eux n'ont peut être 
-    jamais été enregistré dans les données. Nous ferons donc nos analyses à 
+    jamais été enregistrés dans nos données. Nous ferons donc nos analyses à 
     partir de 1979, date a partir de laquelle les détectons des cyclones sont 
-    devenues satellitaires, pour éviter un biais d'échantillonnage."),
-  p("Les colonnes R34, R50 et R64 montrent beacoup de données manquantes et la 
-    variable Rmax donne des informations similaires. Les colonnes R34, R50 et R64
-    ne seront donc non utilisées ici."),
+    devenues satellitaires et donc exhaustives, pour éviter un biais 
+    d'échantillonnage."),
+  p("Les colonnes R34, R50 et R64 montrent beaucoup de données manquantes et la 
+    variable Rmax donne des informations similaires. Les colonnes R34, R50 et 
+    R64 ne seront donc non utilisées ici."),
   
   p(strong("Appercu du tableau de données :")),
 )
 )
 
 texte_page_2 <- list(para1 = tagList(
-  p("Nous avons à disposition dans le jeu de données les coordonnées des cyclones pour chaque prise de mesure. 
-    Ainsi, nous pouvons représenter les cyclones sur une carte interactive en choisissant de représenter les cyclones d'une année
-    ou d'une période. Les cyclones sont coloriés selon la variable choisie, permettant de visualiser l'évolution des caractéristiques d'un même cyclone
-    au cours du temps (la vitesse maximale (Vmax), la pression au centre (Pression), le rayon maximal (Rmax)) ou le sens de déplacement du cyclone avec la variable Heures de vie.
-    Il est également possible de cliquer sur un point pour obtenir toutes les informations le concernant."),
+  p("Nous avons à disposition dans le jeu de données les coordonnées des 
+  cyclones pour chaque mesure. Ainsi, nous pouvons représenter les 
+  cyclones sur une carte interactive en choisissant de montrer les cyclones 
+  d'une année ou d'une période. Les cyclones sont coloriés selon la variable 
+  choisie, permettant de visualiser l'évolution des caractéristiques d'un même 
+  cyclone au cours du temps avec notamment: la vitesse maximale (Vmax), la 
+  pression au centre du cyclone (Pression), le rayon entre le centre du cyclone 
+  et la bande ou les vents atteignent leur vitesse maximale (Rmax) ou le sens 
+  de déplacement du cyclone avec la variable Heures de vie. Il est également 
+  possible de cliquer sur un point pour obtenir toutes les informations le 
+  concernant."),
 )
 )
 
@@ -100,9 +107,9 @@ texte_page_3A <- list(para1 = tagList(
     p("Sur cette page nous proposons de représenter l'évolution de différentes 
     variables décrivant les caractéristiques des cyclones au cours du temps avec
     au choix:"),
-    p("La vitesse maximal des vent (vmax), la pression au centre du 
+    p("La vitesse maximale des vent (vmax), la pression au centre du 
     cyclone (Pression), le rayon entre le centre du cyclone et la bande ou les 
-    vents atteignent leur vitesse maximal (Rmax) et enfin le nombre de cyclone 
+    vents atteignent leur vitesse maximale (Rmax) et enfin le nombre de cyclone 
     (Nombre)."),
     p("Ici, il est possible de voir la variation au cours de l'année 
     et sur les différentes années de la variable choisie."),
@@ -113,22 +120,22 @@ texte_page_3A <- list(para1 = tagList(
       "),
     p("Exemple : "),
     p("Si pour pression q1 = 0 et q2 = 0.5, alors on regarde comment évolue la
-    mediane (0.5) de la pression minimal (1) de chaques cyclones."),
+    mediane (0.5) de la pression minimale (0) de chaques cyclones."),
     p("Si pour vmax q1 = 0.5 et q2 = 1, alors on regarde la plus grande (1) 
-  vitesse maximale mediane (0.5) de chaques cyclones."),
+    vitesse maximale mediane (0.5) de chaques cyclones."),
     
     
-    p("Il est conseiller de regarder les plus grandes valeures de vmax, q1 = 0.9 et 
-    les plus petites valeures de rmax et pression, q1 = 0.1")
+    p("Il est conseiller de regarder les plus grandes valeures de vmax, q1 = 0.9 
+    et les plus petites valeures de rmax et pression, q1 = 0.1")
 )
 )
 
 texte_page_3B <- list(para1 = tagList(
   p("Sur cette page nous proposons de représenter l'évolution de différentes 
     variables décrivant les caractéristiques des cyclones au cours du temps avec
-    au choix: La vitesse maximal des vent (vmax), la pression au centre du 
+    au choix: La vitesse maximale des vent (vmax), la pression au centre du 
     cyclone (Pression), le rayon entre le centre du cyclone et la bande ou les 
-    vents atteignent leur vitesse maximal (Rmax) et enfin le nombre de cyclone 
+    vents atteignent leur vitesse maximale (Rmax) et enfin le nombre de cyclone 
     (Nombre). Cette évolution est représentée par des graphiques montrant les 
     moyennes de la variable choisie pour chaque années. Une courbe de régression 
     bleue foncée ainsi qu'une bande bleue clair montrant l'incertitude de cette 
@@ -139,9 +146,11 @@ texte_page_3B <- list(para1 = tagList(
 
 
 texte_page_3C <- list(para1 = tagList(
-  p("Nous pouvons retrouver ce que la vitesse max, le rayon maximum et la
-    pression sont corrélés, plus le vitesse est grandes plus les deux autres 
-    sont petits.")
+  p("Sur cette page nous montrons les corrélations entre la vitesse maximale des 
+  vent (vmax), la pression au centre du cyclone (Pression) et le rayon entre le 
+  centre du cyclone et la bande ou les vents atteignent leur vitesse maximale 
+  (Rmax). Nous pouvons voir que vmax, rmax et la pression sont anti-corrélés. 
+  Autrement dit, plus la pression diminue, plus vmax et rmax augmentent.")
   
 )
 )
@@ -163,7 +172,7 @@ texte_page_conclusion <- list(para1 = tagList(
   p("Contrairement à se qu'on aurait pu penser, une augmentation du nombre de 
   cyclones dans le context actuel de réchauffement climatique n'est pas 
   observé avec nos données. En revanche, ces cyclones sont davantage dangereux
-  car capable de développer des vents plus puissants. Aussi, il semble que un 
+  car capable de développer des vents plus puissants. Aussi, il semble qu'un 
   plus grand pourcentage de cyclones touchent les continents, comme montré dans
   le diargramme en bâton. "),
 )

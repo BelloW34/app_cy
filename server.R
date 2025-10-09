@@ -182,8 +182,8 @@ function(input, output, session) {
   output$plot_land <- renderPlot({
     dt_py <- dtp %>% group_by(year) %>% summarise (pland=mean(land=="TRUE")*100)
     dt_py %>% ggplot(aes(x=as.numeric(year), y=pland))+
-      geom_col(fill="steelblue",alpha=0.5) +
-      geom_smooth(method = "lm",colour = "blue", fill = "lightskyblue") +
+      geom_col(fill="steelblue",alpha=0.25) +
+      geom_smooth(method = "lm",colour = "blue", fill = "lightskyblue", alpha=0.60) +
       ggtitle("Évolution du pourcentage de cyclones qui ont touché la terre au cours du temps")+
       scale_x_continuous(breaks=seq(min(dt_py$year),max(dt_py$year),by=5)) +
       labs(x="Années", y="Pourcentage de cyclones ayant touchés la terre")  +
@@ -192,7 +192,7 @@ function(input, output, session) {
             panel.grid.minor = element_blank(), #suppression de la grille mineure
             panel.border = element_blank(), #suppression du cadre
             panel.background = element_blank(), #suppression du fond
-            text = element_text(size = 13.5))
+            text = element_text(size = 18))
   })
 }
 
