@@ -1,5 +1,5 @@
 texte_into_1 <- list(para1 = tagList(
-  h2("Comment ont évolué les caractéristiques des cyclones dans le Pacifique entre 1979 et 2022 ?"),
+  h2("Comment ont évolué les caractéristiques des cyclones dans le Pacifique entre 1979 et 2021 ?"),
   
   p(strong("Informations sur les données :")),
   p("les données sont issues de Xu et al., 2024 
@@ -25,12 +25,27 @@ texte_into_1 <- list(para1 = tagList(
 )
 )
 
-  texte_into_2 <- list(para1 = tagList(
+texte_into_2 <- list(para1 = tagList(
   p("Schéma montrant le fonctionnement d'un cyclone"),
 )
 )
 
-  texte_into_3 <- list(para1 = tagList(
+texte_into_3 <- list(para1 = tagList(
+  p(strong("Problématisation :")),
+  p("Les cyclones sont des phénomènes météorologiques pouvant être dévastateurs 
+    pour les installations humaines. Le dérèglement climatique en cours perturbe 
+    les mécanismes à l'origine de ces cyclones. Ceci change donc les 
+    caractéristiques de ces phénomènes météorologiques au cours du temps. Ainsi, 
+    la compréhenssion de l'évolution des caractéristiques des cyclones est 
+    nécessaire pour protéger les populations des risques issus de ces aléas en 
+    contexte de changements climatiques. Ainsi, Nous proposons donc ici de
+    montrer l'évolution au cours du temps des caractéristiques des cyclones. 
+    Ces dernières seront plus précisémment la vitesse maximale des vents (vmax), 
+    la pression au centre du cyclone (pressure), le rayon des vents maximum 
+    (rmax) et le nombre de cyclones. Ceci sera montré a travers une application 
+    destiné à de la médiation scientifique"),
+  
+  
   p(strong("Explication des colonnes du jeu de données:")),
   p("- numéro : indice du cyclone (issu des données IBTrACS)"),
   p("- nom : nom du cyclone (issu des données IBTrACS)"),
@@ -50,28 +65,14 @@ texte_into_1 <- list(para1 = tagList(
   p("- terre : Bouléen indiquant si un cyclone a touché terre"),
   p("- vmax : Vitesse maximale des vents en m.s-1 modélisée"),
   p("- pression : Pression minimum au centre du cyclone modélisé"),
-  p("-rmax : Distance entre la zone de plus basse pression au centre du cyclone et
+  p("- rmax : Distance entre la zone de plus basse pression au centre du cyclone et
     la bande ou les vents atteignent leur vitesse maximale en km modélisé"),
-  p("-R34 : distances depuis le centre du cyclone jusqu'a la zone où la vitesse 
+  p("- R34 : distances depuis le centre du cyclone jusqu'a la zone où la vitesse 
     des vents atteind 34 nœuds en km modélisé"),
-  p("-R50 : distances depuis le centre du cyclone jusqu'a la zone où la vitesse 
+  p("- R50 : distances depuis le centre du cyclone jusqu'a la zone où la vitesse 
     des vents atteind 50 nœuds en km modélisé"),
-  p("-R64 : distances depuis le centre du cyclone jusqu'a la zone où la vitesse 
+  p("- R64 : distances depuis le centre du cyclone jusqu'a la zone où la vitesse 
     des vents atteind 64 nœuds en km modélisé"),
-  
-  p(strong("Problématisation :")),
-  p("Les cyclones sont des phénomènes météorologiques pouvant être dévastateurs 
-    pour les installations humaines. Le dérèglement climatique en cours perturbe 
-    les mécanismes à l'origine de ces cyclones. Ceci change donc les 
-    caractéristiques de ces phénomènes météorologiques au cours du temps. Ainsi, 
-    la compréhenssion de l'évolution des caractéristiques des cyclones est 
-    nécessaire pour protéger les populations des risques issus de ces aléas en 
-    contexte de changements climatiques. Ainsi, Nous proposons donc ici de
-    montrer l'évolution au cours du temps des caractéristiques des cyclones. 
-    Ces dernières seront plus précisémment la vitesse maximale des vents (vmax), 
-    la pression au centre du cyclone (pressure), le rayon des vents maximum 
-    (rmax) et le nombre de cyclones. Ceci sera montré a travers une application 
-    destiné à de la médiation scientifique"),
   
   p(strong("Modifications apportées aux données :")),
   p("Avant 1979 les détections des cyclones ne se faisiant pas par satellite 
@@ -104,28 +105,28 @@ texte_page_2 <- list(para1 = tagList(
 )
 
 texte_page_3A <- list(para1 = tagList(
-    p("Sur cette page nous proposons de représenter l'évolution de différentes 
+  p("Sur cette page nous proposons de représenter l'évolution de différentes 
     variables décrivant les caractéristiques des cyclones au cours du temps avec
     au choix:"),
-    p("La vitesse maximale des vent (vmax), la pression au centre du 
+  p("La vitesse maximale des vent (vmax), la pression au centre du 
     cyclone (Pression), le rayon entre le centre du cyclone et la bande ou les 
     vents atteignent leur vitesse maximale (Rmax) et enfin le nombre de cyclone 
     (Nombre)."),
-    p("Ici, il est possible de voir la variation au cours de l'année 
+  p("Ici, il est possible de voir la variation au cours de l'année 
     et sur les différentes années de la variable choisie."),
-    p("Pour la variable 'Nombre' les quantiles (q1 et q2) n'ont pas d'impact."),
-    p("Pour les autres variables, chaques cyclones est résumé par son quartile 
+  p("Pour la variable 'Nombre' les quantiles (q1 et q2) n'ont pas d'impact."),
+  p("Pour les autres variables, chaques cyclones est résumé par son quartile 
     q1. Chaque mois s'exprime comme le quartile q2 du quantile précedent sur la 
     variable choisi pour les cyclones qui commence dans le mois.
       "),
-    p("Exemple : "),
-    p("Si pour pression q1 = 0 et q2 = 0.5, alors on regarde comment évolue la
+  p("Exemple : "),
+  p("Si pour pression q1 = 0 et q2 = 0.5, alors on regarde comment évolue la
     mediane (0.5) de la pression minimale (0) de chaques cyclones."),
-    p("Si pour vmax q1 = 0.5 et q2 = 1, alors on regarde la plus grande (1) 
+  p("Si pour vmax q1 = 0.5 et q2 = 1, alors on regarde la plus grande (1) 
     vitesse maximale mediane (0.5) de chaques cyclones."),
-    
-    
-    p("Il est conseiller de regarder les plus grandes valeures de vmax, q1 = 0.9 
+  
+  
+  p("Il est conseiller de regarder les plus grandes valeures de vmax, q1 = 0.9 
     et les plus petites valeures de rmax et pression, q1 = 0.1")
 )
 )
@@ -140,7 +141,7 @@ texte_page_3B <- list(para1 = tagList(
     moyennes de la variable choisie pour chaque années. Une courbe de régression 
     bleue foncée ainsi qu'une bande bleue clair montrant l'incertitude de cette 
     régression sont également représentées."),
-
+  
 )
 )
 
