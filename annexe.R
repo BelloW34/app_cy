@@ -24,8 +24,13 @@ texte_into_1 <- list(para1 = tagList(
     horaire dans l'hémisphère sud. "),
 )
 )
-  
-texte_into_2 <- list(para1 = tagList(
+
+  texte_into_2 <- list(para1 = tagList(
+  p("Schéma montrant le fonctionnement d'un cyclone"),
+)
+)
+
+  texte_into_3 <- list(para1 = tagList(
   p(strong("Explication des colonnes du jeu de données:")),
   p("- numéro : indice du cyclone (issu des données IBTrACS)"),
   p("- nom : nom du cyclone (issu des données IBTrACS)"),

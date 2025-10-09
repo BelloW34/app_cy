@@ -26,6 +26,7 @@ body <- dashboardBody(
             texte_into_1$para1,
             img(src = "schema_cyclone.jpg", height = "500px", width = "800px"),
             texte_into_2$para1,
+            texte_into_3$para1,
             verbatimTextOutput("desc_dtp")
     ),
     
