@@ -3,12 +3,11 @@ texte_into_1 <- list(para1 = tagList(
   
   p(strong("Informations sur les données :")),
   p("les données sont issues de Xu et al., 2024 
-    (https://doi.org/10.5194/essd-2024-329). Il s'agit de données décrivant la 
-    taille et l'intensité des cyclones à l'échelle mondiale entre
-    1959 à 2022, avec une résolution temporelle de 3 heures. Les données 
-    proviennent d'une fusion des données IBTrACS (International Best Track 
-    Archive for Climate Stewardship) et ERA5 (European Centre for MediumRange 
-    Weather Forecasts Reanalysis 5)"),
+    (https://doi.org/10.5194/essd-2024-329). Il s'agit de données décrivant 
+    des cyclones à l'échelle mondiale entre 1959 à 2022, avec une résolution 
+    temporelle de 3 heures. Les données proviennent d'une fusion des données 
+    IBTrACS (International Best Track Archive for Climate Stewardship) et ERA5 
+    (European Centre for MediumRange Weather Forecasts Reanalysis 5)"),
   
   p(strong("Qu'est-ce qu'un cyclone :")),
   p("Les cyclones sont des phénomènes météorologiques caractérisés par de fortes
@@ -36,7 +35,7 @@ texte_into_3 <- list(para1 = tagList(
     pour les installations humaines. Le dérèglement climatique en cours perturbe 
     les mécanismes à l'origine de ces cyclones. Ceci change donc les 
     caractéristiques de ces phénomènes météorologiques au cours du temps. Ainsi, 
-    la compréhenssion de l'évolution des caractéristiques des cyclones est 
+    la compréhension de l'évolution des caractéristiques des cyclones est 
     nécessaire pour protéger les populations des risques issus de ces aléas en 
     contexte de changements climatiques. Ainsi, Nous proposons donc ici de
     montrer l'évolution au cours du temps des caractéristiques des cyclones. 
@@ -84,6 +83,7 @@ texte_into_3 <- list(para1 = tagList(
   p("Les colonnes R34, R50 et R64 montrent beaucoup de données manquantes et la 
     variable Rmax donne des informations similaires. Les colonnes R34, R50 et 
     R64 ne seront donc non utilisées ici."),
+  p("Nous avons choisi de nous focaliser ici sur l'océan Pacifique."),
   
   p(strong("Appercu du tableau de données :")),
 )
@@ -91,8 +91,8 @@ texte_into_3 <- list(para1 = tagList(
 
 texte_page_2 <- list(para1 = tagList(
   p("Nous avons à disposition dans le jeu de données les coordonnées des 
-  cyclones pour chaque mesure. Ainsi, nous pouvons représenter les 
-  cyclones sur une carte interactive en choisissant de montrer les cyclones 
+  cyclones toutes les 3h. Ainsi, nous pouvons représenter les 
+  cyclones sur une carte interactive en choisissant de montrer ceux
   d'une année ou d'une période. Les cyclones sont coloriés selon la variable 
   choisie, permettant de visualiser l'évolution des caractéristiques d'un même 
   cyclone au cours du temps avec notamment: la vitesse maximale (Vmax), la 
