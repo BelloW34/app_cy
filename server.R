@@ -192,7 +192,7 @@ function(input, output, session) {
             panel.grid.minor = element_blank(), #suppression de la grille mineure
             panel.border = element_blank(), #suppression du cadre
             panel.background = element_blank(), #suppression du fond
-            text = element_text(size = 18))
+            text = element_text(size = 14))
   })
 }
 
