@@ -2,7 +2,7 @@ texte_into_1 <- list(para1 = tagList(
   h2("Comment ont évolué les caractéristiques des cyclones dans le Pacifique entre 1979 et 2021 ?"),
   
   p(strong("Informations sur les données :")),
-  p("les données sont issues de Xu et al., 2024 
+  p("Les données sont issues de Xu et al., 2024 
     (https://doi.org/10.5194/essd-2024-329). Il s'agit de données décrivant 
     des cyclones à l'échelle mondiale entre 1959 à 2022, avec une résolution 
     temporelle de 3 heures. Les données proviennent d'une fusion des données 
@@ -41,8 +41,8 @@ texte_into_3 <- list(para1 = tagList(
     montrer l'évolution au cours du temps des caractéristiques des cyclones. 
     Ces dernières seront plus précisémment la vitesse maximale des vents (vmax), 
     la pression au centre du cyclone (pressure), le rayon des vents maximum 
-    (rmax) et le nombre de cyclones. Ceci sera montré a travers une application 
-    destiné à de la médiation scientifique"),
+    (rmax) et le nombre de cyclones. Ceci sera montré à travers une application 
+    destinée à de la médiation scientifique"),
   
   
   p(strong("Explication des colonnes du jeu de données:")),
@@ -56,16 +56,16 @@ texte_into_3 <- list(para1 = tagList(
   p("    > DS : Perturbation"),
   p("    > ET : Cyclone extratropical"),
   p("    > MX : Nature incertaine"),
-  p("    > NR : Nature non rapporté"),
+  p("    > NR : Nature non rapportée"),
   p("    > ST : Cyclone subtropical"),
   p("    > TS : Cyclone tropical"),
   p("- lat : latitude (issu des données IBTrACS)"),
   p("- lon : longitude (issu des données IBTrACS)"),
-  p("- terre : Bouléen indiquant si un cyclone a touché terre"),
+  p("- terre : Bouléen indiquant si un cyclone a touché la terre"),
   p("- vmax : Vitesse maximale des vents en m.s-1 modélisée"),
   p("- pression : Pression minimum au centre du cyclone modélisé"),
   p("- rmax : Distance entre la zone de plus basse pression au centre du cyclone et
-    la bande ou les vents atteignent leur vitesse maximale en km modélisé"),
+    la bande où les vents atteignent leur vitesse maximale en km modélisé"),
   p("- R34 : distances depuis le centre du cyclone jusqu'a la zone où la vitesse 
     des vents atteind 34 nœuds en km modélisé"),
   p("- R50 : distances depuis le centre du cyclone jusqu'a la zone où la vitesse 
@@ -74,15 +74,15 @@ texte_into_3 <- list(para1 = tagList(
     des vents atteind 64 nœuds en km modélisé"),
   
   p(strong("Modifications apportées aux données :")),
-  p("Avant 1979 les détections des cyclones ne se faisiant pas par satellite 
-    (Xu et al., 2024), ce qui implique que certains d'entre eux n'ont peut être 
+  p("Avant 1979 les détections des cyclones ne se faisaient pas par satellite 
+    (Xu et al., 2024), ce qui implique que certains d'entre eux n'ont peut-être 
     jamais été enregistrés dans nos données. Nous ferons donc nos analyses à 
-    partir de 1979, date a partir de laquelle les détectons des cyclones sont 
+    partir de 1979, date à partir de laquelle les détections des cyclones sont 
     devenues satellitaires et donc exhaustives, pour éviter un biais 
     d'échantillonnage."),
   p("Les colonnes R34, R50 et R64 montrent beaucoup de données manquantes et la 
     variable Rmax donne des informations similaires. Les colonnes R34, R50 et 
-    R64 ne seront donc non utilisées ici."),
+    R64 ne seront donc pas utilisées ici."),
   p("Nous avons choisi de nous focaliser ici sur l'océan Pacifique."),
   
   p(strong("Appercu du tableau de données :")),
@@ -115,13 +115,13 @@ texte_page_3A <- list(para1 = tagList(
   p("Ici, il est possible de voir la variation au cours de l'année 
     et sur les différentes années de la variable choisie."),
   p("Pour la variable 'Nombre' les quantiles (q1 et q2) n'ont pas d'impact."),
-  p("Pour les autres variables, chaques cyclones est résumé par son quartile 
+  p("Pour les autres variables, chaque cyclone est résumé par son quartile 
     q1. Chaque mois s'exprime comme le quartile q2 du quantile précedent sur la 
     variable choisi pour les cyclones qui commence dans le mois.
       "),
   p("Exemple : "),
   p("Si pour pression q1 = 0 et q2 = 0.5, alors on regarde comment évolue la
-    mediane (0.5) de la pression minimale (0) de chaques cyclones."),
+    mediane (0.5) de la pression minimale (0) de chaque cyclone."),
   p("Si pour vmax q1 = 0.5 et q2 = 1, alors on regarde la plus grande (1) 
     vitesse maximale mediane (0.5) de chaques cyclones."),
   
@@ -138,8 +138,8 @@ texte_page_3B <- list(para1 = tagList(
     cyclone (Pression), le rayon entre le centre du cyclone et la bande ou les 
     vents atteignent leur vitesse maximale (Rmax) et enfin le nombre de cyclone 
     (Nombre). Cette évolution est représentée par des graphiques montrant les 
-    moyennes de la variable choisie pour chaque années. Une courbe de régression 
-    bleue foncée ainsi qu'une bande bleue clair montrant l'incertitude de cette 
+    moyennes de la variable choisie pour chaque année. Une courbe de régression 
+    bleue foncé ainsi qu'une bande bleue clair montrant l'incertitude de cette 
     régression sont également représentées."),
   
 )
@@ -148,7 +148,7 @@ texte_page_3B <- list(para1 = tagList(
 
 texte_page_3C <- list(para1 = tagList(
   p("Sur cette page nous montrons les corrélations entre la vitesse maximale des 
-  vent (vmax), la pression au centre du cyclone (Pression) et le rayon entre le 
+  vents (vmax), la pression au centre du cyclone (Pression) et le rayon entre le 
   centre du cyclone et la bande ou les vents atteignent leur vitesse maximale 
   (Rmax). Nous pouvons voir que vmax, rmax et la pression sont anti-corrélés. 
   Autrement dit, plus la pression diminue, plus vmax et rmax augmentent.")
@@ -164,17 +164,17 @@ texte_page_conclusion <- list(para1 = tagList(
     et leur rayon entre le centre et la bande des vents les plus forts (rmax) 
     ont diminués."),
   
-  p("A titre d'interprétation, la baisse de la pression au centre des cyclones 
+  p("À titre d'interprétation, la baisse de la pression au centre des cyclones 
   et l'augmentation de la vitesse maximale des vents au cours du temps 
-  s'explique très bien par le réchauffement climatique. En effet, l'augmentation
+  s'expliquent très bien par le réchauffement climatique. En effet, l'augmentation
   de la température de surface des océans favorise des ascendances d'air plus 
-  forte d'où des vents plus forts."),
+  fortes d'où des vents plus forts."),
   
-  p("Contrairement à se qu'on aurait pu penser, une augmentation du nombre de 
+  p("Contrairement à ce qu'on aurait pu penser, une augmentation du nombre de 
   cyclones dans le context actuel de réchauffement climatique n'est pas 
   observé avec nos données. En revanche, ces cyclones sont davantage dangereux
-  car capable de développer des vents plus puissants. Aussi, il semble qu'un 
-  plus grand pourcentage de cyclones touchent les continents, comme montré dans
-  le diargramme en bâton. "),
+  car capables de développer des vents plus puissants. Aussi, il semble qu'un 
+  plus grand pourcentage de cyclones touche les continents, comme montré dans
+  le diagramme en bâton ci-dessous. "),
 )
 )

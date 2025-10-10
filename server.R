@@ -74,16 +74,10 @@ function(input, output, session) {
     dt_wrap <- dt
     dt_wrap$lon <- ifelse(dt$lon < 0, dt$lon + 360, dt$lon - 360)
     dt <- rbind(dt, dt_wrap)
-    
-    if (all(is.na(vals))) {
-      # si tout est NA, on choisit un domaine par défaut pour éviter erreurs
-      rng <- c(0, 1)
-    } else {
-      rng <- range(vals, na.rm = TRUE)
-    }
+    rng <- range(vals, na.rm = TRUE)
     pal <- colorNumeric(
       palette = "viridis",  
-      domain = rng   # la variable à représenter
+      domain = rng   
     )
     if (var=="age"){
       car <- "Nombre d'heures de vie"
@@ -180,13 +174,19 @@ function(input, output, session) {
   ##############################################################################
   
   output$plot_land <- renderPlot({
-    dt_py <- dtp %>% group_by(year) %>% summarise (pland=mean(land=="TRUE")*100)
+    
+    dt_py <- dtp %>% 
+      group_by(year) %>% 
+      summarise (pland=mean(land=="TRUE")*100)
+    
     dt_py %>% ggplot(aes(x=as.numeric(year), y=pland))+
+      
       geom_col(fill="steelblue",alpha=0.25) +
       geom_smooth(method = "lm",colour = "blue", fill = "lightskyblue", alpha=0.60) +
       ggtitle("Évolution du pourcentage de cyclones qui ont touché la terre au cours du temps")+
       scale_x_continuous(breaks=seq(min(dt_py$year),max(dt_py$year),by=5)) +
       labs(x="Années", y="Pourcentage de cyclones ayant touchés la terre")  +
+      
       theme(axis.line = element_line(colour = "black"),
             panel.grid.major = element_blank(), #Suppression de la grille majeure
             panel.grid.minor = element_blank(), #suppression de la grille mineure
